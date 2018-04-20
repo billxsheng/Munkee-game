@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+.row {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+.game-container {
+    height: 550px;
+    width: 1000px;
+    background-color: #ffffff;
+}
+
+.main {
+    background-color:#bbdefb;
+    height:100vh;
+}
