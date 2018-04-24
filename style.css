@@ -1,19 +1,92 @@
 * {
+    font-family: "bungee";
+}
+
+.container-fluid {
+    background-image: linear-gradient(rgba(8, 7, 7, 0.81), rgba(0, 0, 0, 0)), url(images/578341.jpg);
+    background-position: center;  
+    height: 100vh;
+    
+}
+.title {
+    text-align: center;
+    position: relative;
+    top: 20px;
+    color: #ffffff;
+
+}
+
+.jumbotron {
+    background-color: #ffffff !important;
+    height: 700px;
+    margin: 50px 50px 50px 50px;
+    border-radius: 40px !important;
+}
+
+.btn-jumbo {
     margin: 0;
-    box-sizing: border-box;
-}
-.row {
-    max-width: 1140px;
-    margin: 0 auto;
+    height: 600px;
 }
 
-.game-container {
-    height: 550px;
-    width: 1000px;
-    background-color: #ffffff;
+
+.main-nav {
+    position: relative;
+    top: 15px;
 }
 
-.main {
-    background-color:#bbdefb;
-    height:100vh;
+.score1,.score2 {
+    text-align: center;
+    position: relative;
+    top: 30px;
+    font-size: 80px;
+    color: #428bca;
 }
+
+.score-curr1, .score-curr2 {
+    text-align: center;
+    color: #428bca;
+    font-size: 30px;
+    
+}
+.logo {
+    width: 100px;
+    position: relative;
+    left: 50%;
+    margin-left: -50px;
+    top: 50px;
+}
+.btn-div a {
+    display: block;
+    
+}
+.btn-new {
+    position: relative;
+    bottom: 10px;
+}
+
+.btn-hold {
+    position: relative;
+    top: 280px;
+}
+
+.btn-roll {
+    position: relative;
+    top: 300px;
+}
+
+.curr-container {
+    position: relative;
+    top: 150px;
+    background-color: #b1b1b1;
+    height: 110px;
+}
+
+h1 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;   
+}
+
+
