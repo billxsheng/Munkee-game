@@ -3,8 +3,9 @@
 }
 
 .container-fluid {
-    background-image: linear-gradient(rgba(8, 7, 7, 0.81), rgba(0, 0, 0, 0)), url(images/578341.jpg);
+    background-image:linear-gradient(rgba(8, 7, 7, 0.79), rgba(0, 0, 0, 0)), url(images/wallpaper.jpg);
     background-position: center;  
+    background-size: cover;
     height: 100vh;
     
 }
@@ -111,4 +112,56 @@ h3 {
 .act3 {
     color: #428bca;
 }
+.settings {
+    text-align: center;
+    font-size: 30px;
+}
+
+.title2 {
+    text-align: center;
+    position: relative;
+    top: 150px;
+    font-size: 17px;
+}
+
+.settings-btn {
+    position: relative;
+    top: 230px;
+    width: 250px;
+}
+.input1 {
+    position: relative;
+    top: 170px;
+    width: 250px;
+    text-align: center;
+}
+
+,input1:focus {
+    outline: none;
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

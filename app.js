@@ -3,6 +3,26 @@ var playerTurn = 0;
 var currentScore1 = 0;
 var currentScore2 = 0;
 var roundScore = 0;
+var winningScore = 10;
+var player1Name = "player 1"
+var player2Name = "player 2"
+
+
+document.querySelector('.btn-p1').addEventListener("click", function(){
+    document.querySelector("#text-p0").textContent = document.querySelector('.p1-name').value;
+    player1Name = document.querySelector('.p1-name').value;
+});
+
+document.querySelector('.btn-p2').addEventListener("click", function(){
+    document.querySelector("#text-p1").textContent = document.querySelector('.p2-name').value;
+    player2Name = document.querySelector('.p2-name').value;
+});
+
+document.querySelector(".btn-max").addEventListener("click", function(){
+   winningScore = document.querySelector(".max-score").value;
+});
+
+
 
 document.getElementById("score0").textContent = 0;
 document.getElementById("score1").textContent = 0;
@@ -29,9 +49,8 @@ document.querySelector(".btn-roll").addEventListener('click', function() {
 document.querySelector(".btn-hold").addEventListener('click', function() {
     scores[playerTurn] += roundScore;
     document.querySelector("#score" + playerTurn).textContent = scores[playerTurn];
-
    
-   if(scores[playerTurn] >= 10) {
+   if(scores[playerTurn] >= winningScore) {
        document.querySelector("#text-p" + playerTurn).textContent = "winner!";
        document.querySelector(".btn-hold").classList.add("disabled");
        document.querySelector(".btn-roll").classList.add("disabled");
@@ -43,9 +62,12 @@ document.querySelector(".btn-hold").addEventListener('click', function() {
 });
 
 document.querySelector(".btn-new").addEventListener("click", function() {
-   scores = [0,0];
-    document.querySelector("#text-p0").textContent = "player 1";
-    document.querySelector("#text-p1").textContent = "player 2";
+    roundScore=0;
+    scores = [0,0];
+    document.querySelector(".btn-hold").classList.remove("disabled");
+    document.querySelector(".btn-roll").classList.remove("disabled");
+     document.getElementById("text-p0").textContent = player1Name;
+     document.getElementById("text-p1").textContent = player2Name;
     document.getElementById("score0").textContent = 0;
     document.getElementById("score1").textContent = 0;
     document.getElementById("curr-score0").textContent = 0;
