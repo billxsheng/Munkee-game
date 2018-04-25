@@ -34,17 +34,17 @@
     top: 15px;
 }
 
-.score1,.score2 {
+.score0,.score1 {
     text-align: center;
     position: relative;
-    top: 30px;
-    font-size: 80px;
-    color: #428bca;
+    top: 120px;
+    font-size: 100px;
+    color: rgba(8, 7, 7, 0.81);
 }
 
-.score-curr1, .score-curr2 {
+.score-curr0, .score-curr1 {
     text-align: center;
-    color: #428bca;
+    color: rgba(8, 7, 7, 0.81);
     font-size: 30px;
     
 }
@@ -57,36 +57,58 @@
 }
 .btn-div a {
     display: block;
-    
 }
+
 .btn-new {
     position: relative;
-    bottom: 10px;
+    bottom: 60px;
 }
 
 .btn-hold {
     position: relative;
-    top: 280px;
+    top: 205px;
 }
 
 .btn-roll {
     position: relative;
-    top: 300px;
+    top: 230px;
 }
 
 .curr-container {
     position: relative;
-    top: 150px;
-    background-color: #b1b1b1;
+    top: 230px;
+    background-color: #ededed;
     height: 110px;
 }
 
-h1 {
+.main-text {
     text-align: center;
+    font-size: 40px;
+    position: relative;
+    top: 40px;
 }
+
 
 h3 {
     text-align: center;   
 }
 
+.dice {
+    width: 150px;
+    left: 50%;
+    position: relative;
+    margin-left: -70px;
+    top: 90px;
+}
+
+.act {
+    color: #428bca;
+}
+
+.act2 {
+    color: #428bca;
+}
+.act3 {
+    color: #428bca;
+}
 
