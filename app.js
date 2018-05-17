@@ -11,15 +11,18 @@ var player2Name = "player 2"
 document.querySelector('.btn-p1').addEventListener("click", function(){
     document.querySelector("#text-p0").textContent = document.querySelector('.p1-name').value;
     player1Name = document.querySelector('.p1-name').value;
+    console.log(`Player 1 name changed to ${document.querySelector('.p1-name').value}`);
 });
 
 document.querySelector('.btn-p2').addEventListener("click", function(){
     document.querySelector("#text-p1").textContent = document.querySelector('.p2-name').value;
     player2Name = document.querySelector('.p2-name').value;
+    console.log(`Player 2 name changed to ${document.querySelector('.p2-name').value}`);
 });
 
 document.querySelector(".btn-max").addEventListener("click", function(){
    winningScore = document.querySelector(".max-score").value;
+    console.log(`Max  ${winningScore}`);
 });
 
 
