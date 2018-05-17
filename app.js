@@ -22,7 +22,7 @@ document.querySelector('.btn-p2').addEventListener("click", function(){
 
 document.querySelector(".btn-max").addEventListener("click", function(){
    winningScore = document.querySelector(".max-score").value;
-    console.log(`Max  ${winningScore}`);
+    console.log(`Max score changed to ${winningScore}`);
 });
 
 
@@ -39,13 +39,14 @@ document.querySelector(".btn-roll").addEventListener('click', function() {
     var dice = Math.floor((Math.random()*5)+1);
     diceDom = document.querySelector('.dice');
     diceDom.src = "images/dice" + dice + ".png";
-    
+    console.log(dice);
     if(dice !== 1) {
         roundScore += dice;
         document.getElementById("curr-score"+playerTurn).textContent = roundScore;
     }
     else {
         nextPlayer();
+        console.log(playerTurn);
     }
 });
 
@@ -59,6 +60,7 @@ document.querySelector(".btn-hold").addEventListener('click', function() {
        document.querySelector(".btn-roll").classList.add("disabled");
     } else {
         nextPlayer();
+        console.log(playerTurn);
     }
     
     
@@ -77,6 +79,7 @@ document.querySelector(".btn-new").addEventListener("click", function() {
     document.getElementById("curr-score1").textContent = 0;
     if(playerTurn == 1) {
         nextPlayer();
+        console.log(playerTurn);
     }
     
    
@@ -87,6 +90,7 @@ function nextPlayer() {
     roundScore = 0;
     document.querySelector("#curr-score" + playerTurn).textContent = 0;
     playerTurn === 0 ? playerTurn = 1 : playerTurn = 0;
+    console.log(playerTurn);
     document.querySelector("#text-p0").classList.toggle("act");
     document.querySelector("#text-p1").classList.toggle("act");
     document.querySelector("#score0").classList.toggle("act2");
