@@ -33,6 +33,7 @@
 .main-nav {
     position: relative;
     top: 15px;
+    left: 50px;
 }
 
 .score0,.score1 {

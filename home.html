@@ -1,1 +1,71 @@
-<!doctype html><html><head> <meta charset="utf-8"> <link rel="stylesheet" type="text/css" href="style.css"> <link href="https://fonts.googleapis.com/css?family=Bungee|Faster+One" rel="stylesheet"> <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"> <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet"> <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet"> </head><title>Munkee</title><body> <div class="container-fluid"> <ul class="nav nav-pills justify-content-center main-nav"> <li class="active"><a href="#play" data-toggle="tab">Play</a></li><li><a href="#settings" data-toggle="tab">Settings</a></li><li><a href="https://www.youtube.com/watch?v=gVIvB-ahI4A" target="_blank">How to Play</a></li><li><a href="http://www.billsheng.me" target="_blank">About</a></li></ul> <div class="title"> <h1>Munkee</h1> </div><div class="tab-content"> <div id="play" class="tab-pane fade in active"> <div class="jumbotron"> <div class="col-md-4 p0"> <div id="text-p0" class="main-text act">Player 1</div><div id="score0" class="score0 act2">0</div><div class="container curr-container"> <h3>Current</h3> <div id="curr-score0" class="score-curr0 act3">0</div></div></div><div class="col-md-4 btn-div"> <div class="jumbotron btn-jumbo"> <a class="btn btn-primary btn-new"><i class="fas fa-plus"></i>&nbsp;&nbsp;New Game</a> <img class="dice" id="dice" src="images/dice1.png"> <a id="btn-hold" class="btn btn-primary btn-hold"><i class="fas fa-hand-paper"></i>&nbsp;&nbsp;Hold</a> <a id="btn-roll" class="btn btn-primary btn-roll"><i class="fas fa-play"></i>&nbsp;&nbsp;Roll</a> </div></div><div class="col-md-4 p2"> <div id="text-p1" class="main-text">PLAYER 2</div><div id="score1" class="score1">0</div><div class="container curr-container"> <h3>Current</h3> <div id="curr-score1" class="score-curr1">0</div></div></div></div></div><div id="settings" class="tab-pane fade in"> <div class="jumbotron"> <div class="container"> <div class="title3">Settings</div><div class="col-md-4"> <div class="title2">Adjust Player 1 Name</div><input type="text" placeholder="Player 1 Name" class="p1-name input1"> <a class="settings-btn btn btn-primary btn-p1">GO</a> </div><div class="col-md-4"> <div class="title2">adjust Player 2 Name</div><input type="text" placeholder="Player 2 Name" class="p2-name input1"> <a class="settings-btn btn btn-primary btn-p2">GO</a> </div><div class="col-md-4"> <div class="title2">adjust Max Score</div><input type="text" placeholder="Max Score" class="max-score input1"> <a class="settings-btn btn btn-primary btn-max">GO</a> </div></div></div></div></div></div></body><script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script><script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script><script src="bootstrap.min.js"></script><script src="app.js"></script></html>
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Bungee|Faster+One" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet"> </head>
+<title>Munkee</title>
+
+<body>
+    <div class="container-fluid">
+        <ul class="nav nav-pills justify-content-center main-nav">
+            <li class="active"><a href="#play" data-toggle="tab">Play</a></li>
+            <li><a href="/online">Online</a></li>
+            <li><a href="#settings" data-toggle="tab">Settings</a></li>
+            <li><a href="https://www.youtube.com/watch?v=gVIvB-ahI4A" target="_blank">How to Play</a></li>
+            <li><a href="http://www.billsheng.me" target="_blank">About</a></li>
+        </ul>
+        <div class="title">
+            <h1>Munkee</h1>
+        </div>
+        <div class="tab-content">
+            <div id="play" class="tab-pane fade in active">
+                <div class="jumbotron">
+                    <div class="col-md-4 p0">
+                        <div id="text-p0" class="main-text act">Player 1</div>
+                        <div id="score0" class="score0 act2">0</div>
+                        <div class="container curr-container">
+                            <h3>Current</h3>
+                            <div id="curr-score0" class="score-curr0 act3">0</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 btn-div">
+                        <div class="jumbotron btn-jumbo"> <a class="btn btn-primary btn-new"><i class="fas fa-plus"></i>&nbsp;&nbsp;New Game</a> <img class="dice" id="dice" src="images/dice1.png"> <a id="btn-hold" class="btn btn-primary btn-hold"><i class="fas fa-hand-paper"></i>&nbsp;&nbsp;Hold</a> <a id="btn-roll" class="btn btn-primary btn-roll"><i class="fas fa-play"></i>&nbsp;&nbsp;Roll</a> </div>
+                    </div>
+                    <div class="col-md-4 p2">
+                        <div id="text-p1" class="main-text">PLAYER 2</div>
+                        <div id="score1" class="score1">0</div>
+                        <div class="container curr-container">
+                            <h3>Current</h3>
+                            <div id="curr-score1" class="score-curr1">0</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="settings" class="tab-pane fade in">
+                <div class="jumbotron">
+                    <div class="container">
+                        <div class="title3">Settings</div>
+                        <div class="col-md-4">
+                            <div class="title2">Adjust Player 1 Name</div><input type="text" placeholder="Player 1 Name" class="p1-name input1"> <a class="settings-btn btn btn-primary btn-p1">GO</a> </div>
+                        <div class="col-md-4">
+                            <div class="title2">adjust Player 2 Name</div><input type="text" placeholder="Player 2 Name" class="p2-name input1"> <a class="settings-btn btn btn-primary btn-p2">GO</a> </div>
+                        <div class="col-md-4">
+                            <div class="title2">adjust Max Score</div><input type="text" placeholder="Max Score" class="max-score input1"> <a class="settings-btn btn btn-primary btn-max">GO</a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<script src="bootstrap.min.js"></script>
+<script src="app.js"></script>
+
+</html>
