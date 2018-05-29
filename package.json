@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/billxsheng/Munkee/issues"
   },
-  "homepage": "https://github.com/billxsheng/Munkee#readme"
+  "homepage": "https://github.com/billxsheng/Munkee#readme",
+  "dependencies": {
+    "express": "^4.16.3",
+    "hbs": "^4.0.1"
+  }
 }
