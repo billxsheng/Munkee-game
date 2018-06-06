@@ -71,6 +71,10 @@
 .btn-div a {
     display: block;
 }
+.btn-div-online {
+    position: relative;
+    top: -50px;
+}
 
 .btn-hold {
     position: relative;

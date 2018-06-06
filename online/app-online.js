@@ -67,6 +67,7 @@ document.querySelector(".btn-hold").addEventListener('click', function() {
 });
 
 document.querySelector(".btn-new").addEventListener("click", function() {
+    console.log('new game');
     roundScore=0;
     scores = [0,0];
     document.querySelector(".btn-hold").classList.remove("disabled");
