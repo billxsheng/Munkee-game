@@ -6,7 +6,8 @@ const socketIO = require('socket.io');
 const http = require('http');
 
 app.set('view engine', 'hbs');
-app.use(express.static(path.join(__dirname, '../views')));
+app.use(express.static('views'));
+app.use(express.static('online'));
 var server = http.createServer(app);
 var io = socketIO(server);
 
