@@ -17,6 +17,10 @@
     color: #ffffff;
 }
 
+.roomId {
+    color:rgb(73, 209, 68);
+}
+
 .jumbotron {
     background-color: #ffffff !important;
     height: 700px;
@@ -27,6 +31,8 @@
 .btn-jumbo {
     margin: 0;
     height: 600px;
+    position: relative;
+    top: 2px;
 }
 
 
@@ -74,6 +80,15 @@
 .btn-div-online {
     position: relative;
     top: -50px;
+}
+.jumbotron-msg {
+    background-color: #ededed !important;
+}
+
+.message {
+    text-align: center;
+    color:rgb(73, 209, 68);
+    font-size: 20px;
 }
 
 .btn-hold {

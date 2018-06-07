@@ -12,17 +12,23 @@ const uniqId = require('uniqid');
 //active array 
 var activeGames = [];
 
-//functions
+//new id function
 var newId = ((id) => {
-    const activeCheck = new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         if(activeGames.includes(id) === true) {
-            reject();
+            Promise.reject();
         }
         else {
             activeGames.push(id);
+            console.log(activeGames);
             resolve();
         }
     });
+});
+
+//scan id function
+var scanId = ((id) => {
+
 });
 
 //setting hbs module
@@ -76,11 +82,20 @@ app.post('/online/create/redirect', urlencodedParser, (req, res) => {
             "hostname": req.body.name
         }
     }));
+    hbs.registerHelper('getRoomId', () => {
+        return id;
+    });
+    hbs.registerHelper('getHostName', () => {
+        return req.body.name;
+    });
+    hbs.registerHelper('fetchMsg', () => {
+        return "HOST CONNECTED";
+    });
 });
 
 //joining room data
 app.post('/online/join/redirect', (req, res) => {
-
+    console.log(req.body);
 });
 
 //route to join a room
@@ -98,6 +113,13 @@ app.get('/online/room/' /*room id*/, (req, res) => {
 //socket serverside connection
 io.on('connection', (socket) => {
     console.log('User connected.');
+
+    socket.on('join', (query) => {
+        console.log('room joined');
+        console.log(query);
+        socket.join(query.id);
+        console.log('joined room', query.id);
+    });
 });
 
 
