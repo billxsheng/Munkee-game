@@ -19,3 +19,8 @@ socket.on('connect', () => {
 
     });
 });
+
+socket.on('p2Update', function(data) {
+    document.getElementById('text-p1').textContent = data.name; 
+});
+

@@ -13,7 +13,7 @@
 <body>
     <div class="container-fluid">
         <div class="title">
-            <h1>Room #<span class="roomId">{{getRoomId}}</span></h1>
+            <h1 id="header-room">Room #<span class="roomId">{{getRoomId}}</span></h1>
         </div>
         <div class="tab-content">
             <div id="play" class="tab-pane fade in active">
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 p2">
-                        <div id="text-p1" class="main-text">PLAYER 2</div>
+                        <div id="text-p1" class="main-text">{{getP2Name}}</div>
                         <div id="score1" class="score1">0</div>
                         <div class="container curr-container">
                             <h3>Current</h3>

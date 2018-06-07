@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const url = require('url');
 const uniqId = require('uniqid');
 
+
 //active array 
 var activeGames = [];
 
@@ -19,8 +20,12 @@ var newId = ((id) => {
             Promise.reject();
         }
         else {
+            console.log('new id succeeded')
             activeGames.push(id);
-            console.log(activeGames);
+            activeGames.forEach(function(item, index, array) {
+                console.log(item, index);
+            });
+
             resolve();
         }
     });
@@ -28,7 +33,24 @@ var newId = ((id) => {
 
 //scan id function
 var scanId = ((id) => {
+    return new Promise((resolve, reject) => {
+        if(activeGames.includes(id) === true) {
+            resolve();
+        }
+        else {
+            Promise.reject();
+        }
+    });
+});
 
+//check game middleware
+var gameCheck = ((req, res, next) => {
+    //check active games
+    if(req.query.id == undefined) {
+        res.redirect('/');
+    } else {
+        next();
+    }
 });
 
 //setting hbs module
@@ -41,6 +63,7 @@ app.use(express.static('online'));
 //socket.io config
 var server = http.createServer(app);
 var io = socketIO(server);
+app.io = io;
 
 //body parser
 app.use(bodyParser.json());
@@ -63,25 +86,21 @@ app.get('/online/create',(req, res) => {
 
 //posting room data
 app.post('/online/create/redirect', urlencodedParser, (req, res) => {
-    console.log(req.body);
     var id = uniqId();
     console.log(id);
-    newId((id) => {
-        console.log("id taken into method");
-    }).then(() => {
+    newId((id)).then(() => {
         console.log('Successfully added to active games.');
-        console.log(activeGames);
     }).catch((e) => {
-        res.send('An unexpected error occured.')
+        res.send('An unexpected error occured.');
     })
     //add id into array of active id's
     res.redirect(url.format({
         pathname:"/online/room/",
         query: {
             "id": id,
-            "hostname": req.body.name
         }
     }));
+
     hbs.registerHelper('getRoomId', () => {
         return id;
     });
@@ -91,11 +110,50 @@ app.post('/online/create/redirect', urlencodedParser, (req, res) => {
     hbs.registerHelper('fetchMsg', () => {
         return "HOST CONNECTED";
     });
+
+    hbs.registerHelper('getP2Name', () => {
+        return "Player 2...";
+    });
+
+    // res.app.io.emit('hostJoined', {
+    //     id
+    // });
 });
 
 //joining room data
-app.post('/online/join/redirect', (req, res) => {
-    console.log(req.body);
+app.post('/online/join/redirect', urlencodedParser, (req, res) => {
+    console.log(req.body.id);
+    // scanId((req.body.id)).then(() => {
+    //     res.redirect(url.format({
+    //         pathname:"/online/room/",
+    //         query: {
+    //             "id": id,
+    //             "hostname": req.body.name
+    //         }
+    //     }));
+    // }).catch(() => {
+    //     res.send('Invalid ID.');
+    // });
+    res.redirect(url.format({
+                pathname:"/online/room/",
+                query: {
+                    "id": req.body.id,
+                },
+    }));
+
+    hbs.registerHelper('getP2Name', () => {
+        return req.body.name;
+    });
+
+    hbs.registerHelper('fetchMsg', () => {
+        return "P2 CONNECTED";
+    });
+
+    io.in(req.body.id).emit('p2Update', {
+        name: req.body.name
+    });
+
+
 });
 
 //route to join a room
@@ -104,7 +162,7 @@ app.get('/online/join', (req, res) => {
 });
 
 //route to join a room
-app.get('/online/room/' /*room id*/, (req, res) => {
+app.get('/online/room', gameCheck, (req, res) => {
     res.render('room');
     //use url module
 });
@@ -115,13 +173,17 @@ io.on('connection', (socket) => {
     console.log('User connected.');
 
     socket.on('join', (query) => {
-        console.log('room joined');
-        console.log(query);
         socket.join(query.id);
         console.log('joined room', query.id);
     });
-});
 
+    socket.on('createGame', () => {
+        socket.emit('hostJoined', {
+            
+        })
+    })
+
+});
 
 //listen
 server.listen(3000, () => {

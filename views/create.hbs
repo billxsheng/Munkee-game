@@ -13,12 +13,12 @@
 <body>
     <div class="container-fluid">
         <div class="title">
-            <h1>CREATE A GAME</h1>
+            <h1 id="yeet">CREATE A GAME</h1>
             <div class="jumbotron jumbotron-dark">
                 <form class="create-form" action="/online/create/redirect" method="post">
                     <a href="/online" class="btn btn-primary create-part">back</a>
                     <input type="text" name="name" class="create-part create-input" placeholder="name" autofocus autocomplete="off">
-                    <input type="submit" class="btn btn-primary create-part">
+                    <input id="btn-create" type="submit" class="btn btn-primary create-part">
                 </form>
             </div>
         </div>
@@ -28,6 +28,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 <script src="/../bootstrap.min.js"></script>
-{{!-- <script src="/app.js"></script> --}}
+<script src="/app-online.js"></script>
+
 
 </html>
