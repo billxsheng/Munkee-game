@@ -112,7 +112,7 @@ app.post('/online/create/redirect', urlencodedParser, (req, res) => {
     });
 
     hbs.registerHelper('getP2Name', () => {
-        return "Player 2...";
+        return "Player 2 ...";
     });
 
     // res.app.io.emit('hostJoined', {
@@ -173,8 +173,20 @@ io.on('connection', (socket) => {
     console.log('User connected.');
 
     socket.on('join', (query) => {
-        socket.join(query.id);
-        console.log('joined room', query.id);
+        console.log(io.of('/').in(query.id).clients);
+        if((io.of('/').in(query.id).clients.length) < 2) {
+            socket.join(query.id);
+            console.log('joined room', query.id);
+        } else {
+            console.log('max players exceeded');
+        }
+    });
+
+    socket.on('requestTurnScore', (data) => {
+        io.in(data.id).emit('updateTurnScore', {
+            score: data.roundScore,
+            turn: data.playerTurn
+        });
     });
 
     socket.on('createGame', () => {

@@ -20,7 +20,17 @@ socket.on('connect', () => {
     });
 });
 
-socket.on('p2Update', function(data) {
-    document.getElementById('text-p1').textContent = data.name; 
+socket.on('updateTurnScore', function(data) {
+    console.log(data.turn, data.score);
+    document.getElementById('curr-score' + data.turn).textContent = data.score;
 });
 
+socket.on('p2Update', function(data) {
+    document.getElementById('text-p1').textContent = data.name; 
+    document.getElementById('message').textContent = "P2 Connected";
+    document.getElementById('btn-new').classList.remove('disabled');
+    document.getElementById('btn-hold').classList.remove('disabled');
+    document.getElementById('btn-roll').classList.remove('disabled');
+
+    //enable btns
+});

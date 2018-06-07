@@ -8,6 +8,15 @@ var player1Name = "player 1";
 var player2Name = "player 2";
 
 
+// document.getElementById('btn-roll').addEventListener('click', function() {
+//     var query = parseQuery(window.location.search);
+//     console.log(query.id);
+//     io.in(query.id).emit('updateTurnScore', {
+
+//     })
+// });
+
+
 // document.querySelector('.btn-p1').addEventListener("click", function(){
 //     document.querySelector("#text-p0").textContent = document.querySelector('.p1-name').value;
 //     player1Name = document.querySelector('.p1-name').value;
@@ -43,6 +52,13 @@ document.querySelector(".btn-roll").addEventListener('click', function() {
     if(dice !== 1) {
         roundScore += dice;
         document.getElementById("curr-score"+playerTurn).textContent = roundScore;
+        var query = parseQuery(window.location.search);
+        console.log(query.id);
+        socket.emit('requestTurnScore', {
+            roundScore,
+            playerTurn,
+            id:query.id
+        });
     }
     else {
         nextPlayer();
