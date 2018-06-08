@@ -7,6 +7,8 @@ var winningScore = 100;
 var player1Name = "player 1";
 var player2Name = "player 2";
 
+var query = parseQuery(window.location.search);
+checkTurn();
 
 // document.getElementById('btn-roll').addEventListener('click', function() {
 //     var query = parseQuery(window.location.search);
@@ -34,15 +36,10 @@ var player2Name = "player 2";
 //     console.log(`Max score changed to ${winningScore}`);
 // });
 
-
-
 document.getElementById("score0").textContent = 0;
 document.getElementById("score1").textContent = 0;
 document.getElementById("curr-score0").textContent = 0;
 document.getElementById("curr-score1").textContent = 0;
-
-
-
 
 document.querySelector(".btn-roll").addEventListener('click', function() {
     var dice = Math.floor((Math.random()*5)+1);
@@ -107,12 +104,29 @@ document.querySelector(".btn-new").addEventListener("click", function() {
    
 });
 
+function checkTurn() {
+    console.log('checking turn');
+    if(playerTurn === 0) {
+        console.log('0 detected');
+        socket.emit('requestHostTurn', {
+            id: query.id
+        });
+    } else if(playerTurn === 1) {
+        console.log('1 detected');
+        socket.emit('requestPairTurn', {
+            id: query.id
+        });
+    }
+};
+
 
 function nextPlayer() {
     roundScore = 0;
     document.querySelector("#curr-score" + playerTurn).textContent = 0;
     playerTurn === 0 ? playerTurn = 1 : playerTurn = 0;
     console.log(playerTurn);
+    var query = parseQuery(window.location.search);
+    checkTurn();
     document.querySelector("#text-p0").classList.toggle("act");
     document.querySelector("#text-p1").classList.toggle("act");
     document.querySelector("#score0").classList.toggle("act2");

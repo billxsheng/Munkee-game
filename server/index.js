@@ -196,6 +196,19 @@ io.on('connection', (socket) => {
         });
     });
 
+    socket.on('requestHostTurn', (data) => {
+        socket.broadcast.to(data.id).emit('pairTurn-hostOn', {
+        });
+        socket.to(data.id).emit('pairTurn-pairOff');
+    });
+
+    socket.on('requestPairTurn', (data) => {
+        socket.broadcast.to(data.id).emit('pairTurn-pairOn', {
+        });
+        socket.to(data.id).emit('pairTurn-hostOff');
+    });
+
+
     socket.on('createGame', () => {
         socket.emit('hostJoined', {
             

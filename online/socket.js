@@ -30,12 +30,36 @@ socket.on('updateHoldScore', function(data) {
     document.getElementById('curr-score' + data.turn).textContent = 0;
 });
 
-socket.on('p2Update', function(data) {
-    document.getElementById('text-p1').textContent = data.name; 
-    document.getElementById('message').textContent = "P2 Connected";
+socket.on('pairTurn-pairOff', function() {
+    document.getElementById('btn-new').classList.add('disabled');
+    document.getElementById('btn-hold').classList.add('disabled');
+    document.getElementById('btn-roll').classList.add('disabled');
+});
+
+socket.on('pairTurn-pairOn', function() {
     document.getElementById('btn-new').classList.remove('disabled');
     document.getElementById('btn-hold').classList.remove('disabled');
     document.getElementById('btn-roll').classList.remove('disabled');
+});
+
+socket.on('pairTurn-hostOff', function() {
+    document.getElementById('btn-new').classList.add('disabled');
+    document.getElementById('btn-hold').classList.add('disabled');
+    document.getElementById('btn-roll').classList.add('disabled');
+});
+
+socket.on('pairTurn-hostOn', function() {
+    document.getElementById('btn-new').classList.remove('disabled');
+    document.getElementById('btn-hold').classList.remove('disabled');
+    document.getElementById('btn-roll').classList.remove('disabled');
+});
+
+socket.on('p2Update', function(data) {
+    document.getElementById('text-p1').textContent = data.name; 
+    document.getElementById('message').textContent = "P2 Connected";
+    // document.getElementById('btn-new').classList.remove('disabled');
+    // document.getElementById('btn-hold').classList.remove('disabled');
+    // document.getElementById('btn-roll').classList.remove('disabled');
 
     //enable btns
 });
