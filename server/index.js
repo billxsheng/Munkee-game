@@ -114,10 +114,6 @@ app.post('/online/create/redirect', urlencodedParser, (req, res) => {
     hbs.registerHelper('getP2Name', () => {
         return "Player 2 ...";
     });
-
-    // res.app.io.emit('hostJoined', {
-    //     id
-    // });
 });
 
 //joining room data
@@ -153,7 +149,7 @@ app.post('/online/join/redirect', urlencodedParser, (req, res) => {
         name: req.body.name
     });
 
-
+    io.in(req.body.id).emit('startGameBtn');
 });
 
 //route to join a room
@@ -196,16 +192,23 @@ io.on('connection', (socket) => {
         });
     });
 
+    socket.on('requestNew', (data) => {
+        io.in(data.id).emit('updateNew');
+    });
+
+    socket.on('hostTurnRequestFirst', (data) => {
+        socket.emit('hostTurnFirst');
+    });
+
     socket.on('requestHostTurn', (data) => {
-        socket.broadcast.to(data.id).emit('pairTurn-hostOn', {
-        });
-        socket.to(data.id).emit('pairTurn-pairOff');
+       //socket.emit add btn disable
+       //socket.broadcast.to remove btn disable
+       //io,in.emit add btn disable for start game
     });
 
     socket.on('requestPairTurn', (data) => {
-        socket.broadcast.to(data.id).emit('pairTurn-pairOn', {
-        });
-        socket.to(data.id).emit('pairTurn-hostOff');
+       //socket.emit add btn disable
+       //socket.broadcast.to remove btn disable
     });
 
 

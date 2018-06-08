@@ -93,12 +93,22 @@
 
 .btn-hold {
     position: relative;
+    top: 155px;
+}
+
+.btn-hold-room {
+    position: relative;
     top: 205px;
 }
 
 .btn-roll {
     position: relative;
-    top: 230px;
+    top: 170px;
+}
+
+.btn-roll-home {
+    position: relative;
+    top: 220px;
 }
 
 .curr-container {

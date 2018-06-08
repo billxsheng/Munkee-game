@@ -6,9 +6,8 @@ var roundScore = 0;
 var winningScore = 100;
 var player1Name = "player 1";
 var player2Name = "player 2";
-
 var query = parseQuery(window.location.search);
-checkTurn();
+gameStartTurn();
 
 // document.getElementById('btn-roll').addEventListener('click', function() {
 //     var query = parseQuery(window.location.search);
@@ -84,10 +83,19 @@ document.querySelector(".btn-hold").addEventListener('click', function() {
     
 });
 
+document.getElementById('btn-start').addEventListener('click', function() {
+    document.getElementById('message').textContent = "Game started by host";
+    socket.emit('hostTurnRequestFirst', {id:query.id});
+});
+
 document.querySelector(".btn-new").addEventListener("click", function() {
     console.log('new game');
     roundScore=0;
     scores = [0,0];
+    var query = parseQuery(window.location.search);
+    socket.emit('requestNew', {
+       id:query.id
+    });
     document.querySelector(".btn-hold").classList.remove("disabled");
     document.querySelector(".btn-roll").classList.remove("disabled");
      document.getElementById("text-p0").textContent = player1Name;
@@ -104,6 +112,7 @@ document.querySelector(".btn-new").addEventListener("click", function() {
    
 });
 
+
 function checkTurn() {
     console.log('checking turn');
     if(playerTurn === 0) {
@@ -118,7 +127,6 @@ function checkTurn() {
         });
     }
 };
-
 
 function nextPlayer() {
     roundScore = 0;
