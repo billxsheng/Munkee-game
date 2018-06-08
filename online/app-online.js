@@ -69,7 +69,12 @@ document.querySelector(".btn-roll").addEventListener('click', function() {
 document.querySelector(".btn-hold").addEventListener('click', function() {
     scores[playerTurn] += roundScore;
     document.querySelector("#score" + playerTurn).textContent = scores[playerTurn];
-   
+    var query = parseQuery(window.location.search);
+    socket.emit('requestHold', {
+       playerTurn,
+       id:query.id,
+       scores
+    });
    if(scores[playerTurn] >= winningScore) {
        document.querySelector("#text-p" + playerTurn).textContent = "winner!";
        document.querySelector(".btn-hold").classList.add("disabled");

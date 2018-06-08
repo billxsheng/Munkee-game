@@ -189,6 +189,13 @@ io.on('connection', (socket) => {
         });
     });
 
+    socket.on('requestHold', (data) => {
+        io.in(data.id).emit('updateHoldScore', {
+            scores: data.scores,
+            turn: data.playerTurn
+        });
+    });
+
     socket.on('createGame', () => {
         socket.emit('hostJoined', {
             

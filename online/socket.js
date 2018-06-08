@@ -25,6 +25,11 @@ socket.on('updateTurnScore', function(data) {
     document.getElementById('curr-score' + data.turn).textContent = data.score;
 });
 
+socket.on('updateHoldScore', function(data) {
+    document.getElementById('score' + data.turn).textContent = data.scores[data.turn];
+    document.getElementById('curr-score' + data.turn).textContent = 0;
+});
+
 socket.on('p2Update', function(data) {
     document.getElementById('text-p1').textContent = data.name; 
     document.getElementById('message').textContent = "P2 Connected";
