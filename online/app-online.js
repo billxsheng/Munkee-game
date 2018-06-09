@@ -98,8 +98,6 @@ document.querySelector(".btn-new").addEventListener("click", function() {
     });
     document.querySelector(".btn-hold").classList.remove("disabled");
     document.querySelector(".btn-roll").classList.remove("disabled");
-     document.getElementById("text-p0").textContent = player1Name;
-     document.getElementById("text-p1").textContent = player2Name;
     document.getElementById("score0").textContent = 0;
     document.getElementById("score1").textContent = 0;
     document.getElementById("curr-score0").textContent = 0;
@@ -108,10 +106,7 @@ document.querySelector(".btn-new").addEventListener("click", function() {
         nextPlayer();
         console.log(playerTurn);
     }
-    
-   
 });
-
 
 function checkTurn() {
     console.log('checking turn');
@@ -137,10 +132,10 @@ function nextPlayer() {
     checkTurn();
     document.querySelector("#text-p0").classList.toggle("act");
     document.querySelector("#text-p1").classList.toggle("act");
-    document.querySelector("#score0").classList.toggle("act2");
-    document.querySelector("#score1").classList.toggle("act2");
-    document.querySelector("#curr-score0").classList.toggle("act3");
-    document.querySelector("#curr-score1").classList.toggle("act3");
+    document.querySelector("#score0").classList.toggle("act");
+    document.querySelector("#score1").classList.toggle("act");
+    document.querySelector("#curr-score0").classList.toggle("act");
+    document.querySelector("#curr-score1").classList.toggle("act");
 }
 
 

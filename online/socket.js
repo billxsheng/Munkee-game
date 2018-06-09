@@ -24,6 +24,25 @@ socket.on('connect', () => {
     });
 });
 
+//toggle colors
+function removeColor() {
+    document.querySelector("#text-p0").classList.remove("act");
+    document.querySelector("#text-p1").classList.remove("act");
+    document.querySelector("#score0").classList.remove("act");
+    document.querySelector("#score1").classList.remove("act");
+    document.querySelector("#curr-score0").classList.remove("act");
+    document.querySelector("#curr-score1").classList.remove("act");
+}
+
+function addColor() {
+    document.querySelector("#text-p0").classList.add("act");
+    document.querySelector("#text-p1").classList.add("act");
+    document.querySelector("#score0").classList.add("act");
+    document.querySelector("#score1").classList.add("act");
+    document.querySelector("#curr-score0").classList.add("act");
+    document.querySelector("#curr-score1").classList.add("act");
+}
+
 //turn switch algorithm
 socket.on('hostTurnFirst', function() {
     console.log('hostTurn');
@@ -34,21 +53,25 @@ socket.on('hostTurnFirst', function() {
 socket.on('pairOff', function() {
     holdbtn.add('disabled');
     rollbtn.add('disabled');
+    removeColor();
 });
 
 socket.on('hostOn', function() {
     holdbtn.remove('disabled');
     rollbtn.remove('disabled');
+    addColor();
 });
 
 socket.on('hostOff', function() {
     holdbtn.add('disabled');
     rollbtn.add('disabled');
+    removeColor();
 });
 
 socket.on('pairOn', function() {
     holdbtn.remove('disabled');
     rollbtn.remove('disabled');
+    addColor();
 });
 
 socket.on('startBtnDisable', function() {
@@ -73,6 +96,7 @@ socket.on('updateNew', function(data) {
     document.getElementById('curr-score1').textContent = 0;
     document.getElementById('score2').textContent = 0;
     document.getElementById('curr-score2').textContent = 0;
+    //change color
 });
 
 //p2 join update

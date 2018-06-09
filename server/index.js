@@ -59,6 +59,7 @@ app.set('view engine', 'hbs');
 //connecting statics
 app.use(express.static('views'));
 app.use(express.static('online'));
+const port = process.env.PORT || 3000;
 
 //socket.io config
 var server = http.createServer(app);
@@ -203,13 +204,14 @@ io.on('connection', (socket) => {
     socket.on('requestHostTurn', (data) => {
         socket.emit('pairOff');
         socket.broadcast.to(data.id).emit('hostOn');
-       //io,in.emit add btn disable for start game
+         //change message 
     });
 
     socket.on('requestPairTurn', (data) => {
        socket.emit('hostOff');
        socket.broadcast.to(data.id).emit('pairOn');
        socket.emit('startBtnDisable');
+       //change message
     });
 
 
@@ -222,6 +224,6 @@ io.on('connection', (socket) => {
 });
 
 //listen
-server.listen(3000, () => {
-    console.log('started');
+server.listen(port, () => {
+    console.log(`started ${port}`);
 });
