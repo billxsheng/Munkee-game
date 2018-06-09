@@ -201,14 +201,15 @@ io.on('connection', (socket) => {
     });
 
     socket.on('requestHostTurn', (data) => {
-       //socket.emit add btn disable
-       //socket.broadcast.to remove btn disable
+        socket.emit('pairOff');
+        socket.broadcast.to(data.id).emit('hostOn');
        //io,in.emit add btn disable for start game
     });
 
     socket.on('requestPairTurn', (data) => {
-       //socket.emit add btn disable
-       //socket.broadcast.to remove btn disable
+       socket.emit('hostOff');
+       socket.broadcast.to(data.id).emit('pairOn');
+       socket.emit('startBtnDisable');
     });
 
 

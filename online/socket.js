@@ -2,6 +2,7 @@ var socket = io();
 
 var holdbtn = document.getElementById('btn-hold').classList;
 var rollbtn = document.getElementById('btn-roll').classList;
+var startbtn = document.getElementById('btn-start').classList;
 
 function parseQuery(queryString) {
     var query = {};
@@ -28,6 +29,30 @@ socket.on('hostTurnFirst', function() {
     console.log('hostTurn');
     holdbtn.remove('disabled');
     rollbtn.remove('disabled');
+});
+
+socket.on('pairOff', function() {
+    holdbtn.add('disabled');
+    rollbtn.add('disabled');
+});
+
+socket.on('hostOn', function() {
+    holdbtn.remove('disabled');
+    rollbtn.remove('disabled');
+});
+
+socket.on('hostOff', function() {
+    holdbtn.add('disabled');
+    rollbtn.add('disabled');
+});
+
+socket.on('pairOn', function() {
+    holdbtn.remove('disabled');
+    rollbtn.remove('disabled');
+});
+
+socket.on('startBtnDisable', function() {
+    startbtn.add('disabled');
 });
 
 //updating roll score

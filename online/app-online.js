@@ -7,7 +7,7 @@ var winningScore = 100;
 var player1Name = "player 1";
 var player2Name = "player 2";
 var query = parseQuery(window.location.search);
-gameStartTurn();
+
 
 // document.getElementById('btn-roll').addEventListener('click', function() {
 //     var query = parseQuery(window.location.search);
