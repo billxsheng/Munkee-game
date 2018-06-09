@@ -227,6 +227,12 @@ io.on('connection', (socket) => {
        //change message
     });
 
+    socket.on('playerTurnVar', (data) => {
+        io.in(data.id).emit('playerTurn', {
+            turn:data.turn
+        });
+    });
+
 
     socket.on('createGame', () => {
         socket.emit('hostJoined', {

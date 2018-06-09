@@ -39,7 +39,6 @@ function toggleColor() {
 
 //turn switch algorithm
 socket.on('hostTurnFirst', function() {
-    console.log('hostTurn');
     holdbtn.remove('disabled');
     rollbtn.remove('disabled');
 });
@@ -70,13 +69,11 @@ socket.on('startBtnDisable', function() {
 
 //color switch algorithm
 socket.on('switchColor', function() {
-    console.log('toggle color');
     toggleColor();
 });
 
 //updating roll score
 socket.on('updateTurnScore', function(data) {
-    console.log(data.turn, data.score);
     document.getElementById('curr-score' + data.turn).textContent = data.score;
 });
 
@@ -111,6 +108,10 @@ socket.on('p2Update', function(data) {
 socket.on('startGameBtn', function(data) {
     startbtn.remove('disabled');
     newbtn.remove('disabled');  
+});
+
+socket.on('playerTurn', function(data) {
+    playerTurn = data.turn;
 });
 
 
