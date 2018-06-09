@@ -194,12 +194,16 @@ io.on('connection', (socket) => {
     });
 
     socket.on('requestNew', (data) => {
+        console.log('request new');
         io.in(data.id).emit('updateNew');
-        //enable start game btn for host
+        io.in(data.id).emit('pairOff');
+        socket.emit('startGameBtn');
+        //change message new game
     });
 
     socket.on('hostTurnRequestFirst', (data) => {
         socket.emit('hostTurnFirst');
+        //change message game started by host
     });
 
     socket.on('switchcolor', function(data) {
@@ -213,7 +217,7 @@ io.on('connection', (socket) => {
         socket.broadcast.to(data.id).emit('hostOn', {
             data
         });
-         //change message 
+         //change message player 1 turn
     });
 
     socket.on('requestPairTurn', (data) => {
@@ -224,7 +228,7 @@ io.on('connection', (socket) => {
            data
        });
        socket.emit('startBtnDisable');
-       //change message
+       //change message player 2 turn 
     });
 
     socket.on('playerTurnVar', (data) => {

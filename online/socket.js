@@ -84,11 +84,11 @@ socket.on('updateHoldScore', function(data) {
 });
 
 //updating new game
-socket.on('updateNew', function(data) {
+socket.on('updateNew', function() {
     document.getElementById('score1').textContent = 0;
     document.getElementById('curr-score1').textContent = 0;
-    document.getElementById('score2').textContent = 0;
-    document.getElementById('curr-score2').textContent = 0;
+    document.getElementById('score0').textContent = 0;
+    document.getElementById('curr-score0').textContent = 0;
     //change message
     //change color
 });
@@ -116,5 +116,5 @@ socket.on('playerTurn', function(data) {
 
 
 socket.on('p2BtnUpdate', function() {
-    document.getElementById('btn-roll').classList.remove('disabled');
+    rollbtn.remove('disabled');
 });

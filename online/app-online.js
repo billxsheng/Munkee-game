@@ -79,7 +79,6 @@ document.querySelector(".btn-hold").addEventListener('click', function() {
 });
 
 document.getElementById('btn-start').addEventListener('click', function() {
-    document.getElementById('message').textContent = "Game started by host";
     socket.emit('hostTurnRequestFirst', {id:query.id});
 });
 
@@ -91,13 +90,7 @@ document.querySelector(".btn-new").addEventListener("click", function() {
     socket.emit('requestNew', {
        id:query.id
     });
-    document.querySelector(".btn-hold").classList.remove("disabled");
-    document.querySelector(".btn-roll").classList.remove("disabled");
-    document.getElementById("score0").textContent = 0;
-    document.getElementById("score1").textContent = 0;
-    document.getElementById("curr-score0").textContent = 0;
-    document.getElementById("curr-score1").textContent = 0;
-    if(playerTurn === 1) {
+    if(playerTurn == 1) {
         nextPlayer();
     }
 });
