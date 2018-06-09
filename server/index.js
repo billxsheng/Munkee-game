@@ -206,6 +206,10 @@ io.on('connection', (socket) => {
         io.in(data.id).emit('gameStartMessage');
     });
 
+    socket.on('zeroRequest', (data) => {
+        io.in(data.id).emit('zero');
+    });
+
     socket.on('switchcolor', function(data) {
         io.in(data.id).emit('switchColor');
     });

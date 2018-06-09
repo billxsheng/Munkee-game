@@ -127,6 +127,11 @@ socket.on('playerTurn', function(data) {
 
 });
 
+socket.on('zero', function() {
+    document.getElementById('curr-score0').textContent = 0;
+    document.getElementById('curr-score1').textContent = 0;
+});
+
 socket.on('gameStartMessage', function() {
     document.getElementById('message').textContent = "game started by host";
 });
