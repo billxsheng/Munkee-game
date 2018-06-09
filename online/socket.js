@@ -99,7 +99,7 @@ socket.on('updateNew', function() {
 //p2 join update
 socket.on('p2Update', function(data) {
     document.getElementById('text-p1').textContent = data.name; 
-    document.getElementById('message').textContent = "P2 Connected";
+    document.getElementById('message').textContent = "waiting for host to start game";
     // document.getElementById('btn-new').classList.remove('disabled');
     // document.getElementById('btn-hold').classList.remove('disabled');
     // document.getElementById('btn-roll').classList.remove('disabled');
@@ -119,17 +119,22 @@ socket.on('hostTurnMessage', function(data) {
 //start game btn
 socket.on('startGameBtn', function(data) {
     startbtn.remove('disabled');
-    newbtn.remove('disabled');  
+    newbtn.remove('disabled');
 });
 
 socket.on('playerTurn', function(data) {
     playerTurn = data.turn;
+
 });
 
 socket.on('gameStartMessage', function() {
     document.getElementById('message').textContent = "game started by host";
 });
 
+socket.on('playerWin', function(data) {
+    document.getElementById('message').textContent = data.name + " won!";
+    document.querySelector("#text-p" + data.turn).textContent = "winner!";
+});
 
 
 socket.on('p2BtnUpdate', function() {

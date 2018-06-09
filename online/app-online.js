@@ -1,16 +1,13 @@
-console.log('reset');
 var scores = [0,0];
 var playerTurn = 0;
 var currentScore1 = 0;
 var currentScore2 = 0;
 var roundScore = 0;
-var winningScore = 100;
+var winningScore = 10;
 var player1Name = "player 1";
 var player2Name = "player 2";
 var query = parseQuery(window.location.search);
 
-var hostName = document.getElementById('text-p0');
-var pairName = document.getElementById('text-p1');
 
 // document.getElementById('copy').addEventListener('click', function() {
 //     var copyText = document.getElementById('roomId').innerHTML;
@@ -24,7 +21,6 @@ document.querySelector(".btn-roll").addEventListener('click', function() {
     diceDom.src = "/images/dice" + dice + ".png";
     console.log(dice);
     if(dice != 1) {
-        console.log('player turn is' + playerTurn + 'upating curr-score roundscore');
         roundScore += dice;
         document.getElementById("curr-score"+playerTurn).textContent = roundScore;
         var query = parseQuery(window.location.search);
@@ -51,6 +47,11 @@ document.querySelector(".btn-hold").addEventListener('click', function() {
        scores
     });
    if(scores[playerTurn] >= winningScore) {
+       socket.emit('playerWinRequest', {
+           name: document.getElementById('text-p' +playerTurn).innerHTML,
+           playerTurn,
+           id: query.id
+       });
        document.querySelector("#text-p" + playerTurn).textContent = "winner!";
        document.querySelector(".btn-hold").classList.add("disabled");
        document.querySelector(".btn-roll").classList.add("disabled");
@@ -70,15 +71,17 @@ document.querySelector(".btn-new").addEventListener("click", function() {
     roundScore=0;
     scores = [0,0];
     var query = parseQuery(window.location.search);
-    socket.emit('requestNew', {
-       id:query.id
-    });
     if(playerTurn == 1) {
         nextPlayer();
     }
+    socket.emit('requestNew', {
+       id:query.id
+    });
 });
 
 function checkTurn() {
+    var hostName = document.getElementById('text-p0').innerHTML;
+    var pairName = document.getElementById('text-p1').innerHTML;
     if(playerTurn === 0) {
         console.log('0');
         socket.emit('requestHostTurn', {
@@ -104,7 +107,6 @@ function switchColor() {
 
 function nextPlayer() {
     roundScore = 0;
-    document.querySelector("#curr-score" + playerTurn).textContent = 0;
     var query = parseQuery(window.location.search);
     if(playerTurn === 0) {
         playerTurn = 1;
@@ -115,7 +117,6 @@ function nextPlayer() {
         id: query.id,
         turn: playerTurn
     });
-    // playerTurn === 0 ? playerTurn = 1 : playerTurn = 0;
     checkTurn();
     switchColor();
 }

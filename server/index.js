@@ -241,6 +241,14 @@ io.on('connection', (socket) => {
         });
     });
 
+    socket.on('playerWinRequest', (data) => {
+        io.in(data.id).emit('pairOff');
+        io.in(data.id).emit('playerWin', {
+            name: data.name,
+            turn: data.playerTurn
+        });
+    });
+
 
     socket.on('createGame', () => {
         socket.emit('hostJoined', {
