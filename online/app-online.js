@@ -102,7 +102,7 @@ document.querySelector(".btn-new").addEventListener("click", function() {
     document.getElementById("score1").textContent = 0;
     document.getElementById("curr-score0").textContent = 0;
     document.getElementById("curr-score1").textContent = 0;
-    if(playerTurn == 1) {
+    if(playerTurn === 1) {
         nextPlayer();
         console.log(playerTurn);
     }
@@ -113,29 +113,37 @@ function checkTurn() {
     if(playerTurn === 0) {
         console.log('0 detected');
         socket.emit('requestHostTurn', {
-            id: query.id
+            id: query.id,
+            turn: playerTurn
         });
     } else if(playerTurn === 1) {
         console.log('1 detected');
         socket.emit('requestPairTurn', {
-            id: query.id
+            id: query.id,
+            turn:playerTurn
         });
     }
 };
 
+function switchColor() {
+    socket.emit('switchcolor', {
+        id:query.id
+    });
+}
+
 function nextPlayer() {
     roundScore = 0;
     document.querySelector("#curr-score" + playerTurn).textContent = 0;
-    playerTurn === 0 ? playerTurn = 1 : playerTurn = 0;
+    if(playerTurn === 0) {
+        playerTurn = 1
+    } else {
+        playerTurn = 0
+    };
+    // playerTurn === 0 ? playerTurn = 1 : playerTurn = 0;
     console.log(playerTurn);
     var query = parseQuery(window.location.search);
     checkTurn();
-    document.querySelector("#text-p0").classList.toggle("act");
-    document.querySelector("#text-p1").classList.toggle("act");
-    document.querySelector("#score0").classList.toggle("act");
-    document.querySelector("#score1").classList.toggle("act");
-    document.querySelector("#curr-score0").classList.toggle("act");
-    document.querySelector("#curr-score1").classList.toggle("act");
+    switchColor();
 }
 
 

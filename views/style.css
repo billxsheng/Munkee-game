@@ -139,7 +139,9 @@ h3 {
     top: 90px;
 }
 
-.act {
+.act,
+.act2,
+.act3 {
     color: #428bca;
 }
 

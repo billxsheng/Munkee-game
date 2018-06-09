@@ -3,6 +3,8 @@ var socket = io();
 var holdbtn = document.getElementById('btn-hold').classList;
 var rollbtn = document.getElementById('btn-roll').classList;
 var startbtn = document.getElementById('btn-start').classList;
+var newbtn = document.getElementById('btn-new').classList;
+
 
 function parseQuery(queryString) {
     var query = {};
@@ -25,22 +27,14 @@ socket.on('connect', () => {
 });
 
 //toggle colors
-function removeColor() {
-    document.querySelector("#text-p0").classList.remove("act");
-    document.querySelector("#text-p1").classList.remove("act");
-    document.querySelector("#score0").classList.remove("act");
-    document.querySelector("#score1").classList.remove("act");
-    document.querySelector("#curr-score0").classList.remove("act");
-    document.querySelector("#curr-score1").classList.remove("act");
-}
 
-function addColor() {
-    document.querySelector("#text-p0").classList.add("act");
-    document.querySelector("#text-p1").classList.add("act");
-    document.querySelector("#score0").classList.add("act");
-    document.querySelector("#score1").classList.add("act");
-    document.querySelector("#curr-score0").classList.add("act");
-    document.querySelector("#curr-score1").classList.add("act");
+function toggleColor() {
+    document.querySelector("#text-p0").classList.toggle("act");
+    document.querySelector("#score0").classList.toggle("act");
+    document.querySelector("#curr-score0").classList.toggle("act");
+    document.querySelector("#text-p1").classList.toggle("act");
+    document.querySelector("#score1").classList.toggle("act");
+    document.querySelector("#curr-score1").classList.toggle("act");
 }
 
 //turn switch algorithm
@@ -50,32 +44,34 @@ socket.on('hostTurnFirst', function() {
     rollbtn.remove('disabled');
 });
 
-socket.on('pairOff', function() {
+socket.on('pairOff', function(data) {
     holdbtn.add('disabled');
     rollbtn.add('disabled');
-    removeColor();
 });
 
-socket.on('hostOn', function() {
+socket.on('hostOn', function(data) {
     holdbtn.remove('disabled');
     rollbtn.remove('disabled');
-    addColor();
 });
 
-socket.on('hostOff', function() {
+socket.on('hostOff', function(data) {
     holdbtn.add('disabled');
     rollbtn.add('disabled');
-    removeColor();
 });
 
-socket.on('pairOn', function() {
+socket.on('pairOn', function(data) {
     holdbtn.remove('disabled');
     rollbtn.remove('disabled');
-    addColor();
 });
 
 socket.on('startBtnDisable', function() {
     startbtn.add('disabled');
+});
+
+//color switch algorithm
+socket.on('switchColor', function() {
+    console.log('toggle color');
+    toggleColor();
 });
 
 //updating roll score
@@ -96,6 +92,7 @@ socket.on('updateNew', function(data) {
     document.getElementById('curr-score1').textContent = 0;
     document.getElementById('score2').textContent = 0;
     document.getElementById('curr-score2').textContent = 0;
+    //change message
     //change color
 });
 
@@ -112,8 +109,8 @@ socket.on('p2Update', function(data) {
 
 //start game btn
 socket.on('startGameBtn', function(data) {
-    document.getElementById('btn-start').classList.remove('disabled');
-    document.getElementById('btn-new').classList.remove('disabled');  
+    startbtn.remove('disabled');
+    newbtn.remove('disabled');  
 });
 
 

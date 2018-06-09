@@ -195,21 +195,34 @@ io.on('connection', (socket) => {
 
     socket.on('requestNew', (data) => {
         io.in(data.id).emit('updateNew');
+        //enable start game btn for host
     });
 
     socket.on('hostTurnRequestFirst', (data) => {
         socket.emit('hostTurnFirst');
     });
 
+    socket.on('switchcolor', function(data) {
+        io.in(data.id).emit('switchColor');
+    });
+
     socket.on('requestHostTurn', (data) => {
-        socket.emit('pairOff');
-        socket.broadcast.to(data.id).emit('hostOn');
+        socket.emit('pairOff', {
+            data
+        });
+        socket.broadcast.to(data.id).emit('hostOn', {
+            data
+        });
          //change message 
     });
 
     socket.on('requestPairTurn', (data) => {
-       socket.emit('hostOff');
-       socket.broadcast.to(data.id).emit('pairOn');
+       socket.emit('hostOff', {
+           data
+       });
+       socket.broadcast.to(data.id).emit('pairOn', {
+           data
+       });
        socket.emit('startBtnDisable');
        //change message
     });

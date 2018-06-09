@@ -35,7 +35,7 @@ document.getElementById("curr-score1").textContent = 0;
 
 
 
-document.querySelector(".btn-roll").addEventListener('click', function() {
+document.querySelector("#btn-roll").addEventListener('click', function() {
     var dice = Math.floor((Math.random()*5)+1);
     diceDom = document.querySelector('.dice');
     diceDom.src = "images/dice" + dice + ".png";
@@ -50,7 +50,7 @@ document.querySelector(".btn-roll").addEventListener('click', function() {
     }
 });
 
-document.querySelector(".btn-hold").addEventListener('click', function() {
+document.querySelector("#btn-hold").addEventListener('click', function() {
     scores[playerTurn] += roundScore;
     document.querySelector("#score" + playerTurn).textContent = scores[playerTurn];
    
@@ -66,7 +66,7 @@ document.querySelector(".btn-hold").addEventListener('click', function() {
     
 });
 
-document.querySelector(".btn-new").addEventListener("click", function() {
+document.querySelector("#btn-new").addEventListener("click", function() {
     roundScore=0;
     scores = [0,0];
     document.querySelector(".btn-hold").classList.remove("disabled");
