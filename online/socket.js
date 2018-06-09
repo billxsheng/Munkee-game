@@ -75,6 +75,8 @@ socket.on('switchColor', function() {
 //updating roll score
 socket.on('updateTurnScore', function(data) {
     document.getElementById('curr-score' + data.turn).textContent = data.score;
+    diceDom = document.querySelector('.dice');
+    diceDom.src = "/images/dice" + data.dice + ".png";
 });
 
 //updating hold score
@@ -89,6 +91,7 @@ socket.on('updateNew', function() {
     document.getElementById('curr-score1').textContent = 0;
     document.getElementById('score0').textContent = 0;
     document.getElementById('curr-score0').textContent = 0;
+    document.getElementById('message').textContent = "New Game";
     //change message
     //change color
 });
@@ -104,6 +107,15 @@ socket.on('p2Update', function(data) {
     //enable btns
 });
 
+//turn messages
+socket.on('pairTurnMessage', function(data) {
+    document.getElementById('message').textContent = data.pairName + "'s turn"; 
+});
+
+socket.on('hostTurnMessage', function(data) {
+    document.getElementById('message').textContent = data.hostName + "'s turn"; 
+});
+
 //start game btn
 socket.on('startGameBtn', function(data) {
     startbtn.remove('disabled');
@@ -113,6 +125,11 @@ socket.on('startGameBtn', function(data) {
 socket.on('playerTurn', function(data) {
     playerTurn = data.turn;
 });
+
+socket.on('gameStartMessage', function() {
+    document.getElementById('message').textContent = "game started by host";
+});
+
 
 
 socket.on('p2BtnUpdate', function() {

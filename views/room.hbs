@@ -13,11 +13,11 @@
 <body>
     <div class="container-fluid">
         <div class="title">
-            <h1 id="header-room">Room #<span class="roomId">{{getRoomId}}</span></h1>
+            <h1 id="header-room">Room #<span id="roomId"class="roomId">{{getRoomId}}</span>{{!-- <a id="copy" class="btn copy"><i class="fas fa-clipboard"></i>&nbsp;</a> --}}</h1>
         </div>
         <div class="tab-content">
             <div id="play" class="tab-pane fade in active">
-                <div class="jumbotron">
+                <div class="jumbotron jumbotron-dark">
                     <div class="col-md-4 p0">
                         <div id="text-p0" class="main-text act">{{getHostName}}</div>
                         <div id="score0" class="score0 act">0</div>
@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <div class="col-md-4 btn-div btn-div-online">
-                        <div class="jumbotron btn-jumbo"><a href="/" class="btn btn-primary"><i class="fas fa-times-circle"></i>&nbsp;&nbsp;Exit Game</a> <br><a id="btn-new" class="btn btn-primary btn-new disabled"><i class="fas fa-plus"></i>&nbsp;&nbsp;New Game</a><br><a id="btn-start" class="btn btn-primary disabled"><i class="fas fa-play-circle"></i>&nbsp;&nbsp;Start game</a> <img class="dice" id="dice" src="/../images/dice1.png"> <a id="btn-hold" class="btn btn-primary btn-hold disabled"><i class="fas fa-hand-paper"></i>&nbsp;&nbsp;Hold</a> <a id="btn-roll" class="btn btn-primary btn-roll disabled"><i class="fas fa-play"></i>&nbsp;&nbsp;Roll</a> </div>
+                        <div class="jumbotron btn-jumbo jumbotron-dark"><a href="/" class="btn btn-primary"><i class="fas fa-times-circle"></i>&nbsp;&nbsp;Exit Game</a> <br><a id="btn-new" class="btn btn-primary btn-new disabled"><i class="fas fa-plus"></i>&nbsp;&nbsp;New Game</a><br><a id="btn-start" class="btn btn-primary disabled"><i class="fas fa-play-circle"></i>&nbsp;&nbsp;Start game</a> <img class="dice" id="dice" src="/../images/dice1.png"> <a id="btn-hold" class="btn btn-primary btn-hold disabled"><i class="fas fa-hand-paper"></i>&nbsp;&nbsp;Hold</a> <a id="btn-roll" class="btn btn-primary btn-roll disabled"><i class="fas fa-play"></i>&nbsp;&nbsp;Roll</a> </div>
                         <div class="jumbotron-msg">
                              <div id= "message" class='message'>{{fetchMsg}}</div>
                         </div>

@@ -9,31 +9,13 @@ var player1Name = "player 1";
 var player2Name = "player 2";
 var query = parseQuery(window.location.search);
 
+var hostName = document.getElementById('text-p0');
+var pairName = document.getElementById('text-p1');
 
-// document.getElementById('btn-roll').addEventListener('click', function() {
-//     var query = parseQuery(window.location.search);
-//     console.log(query.id);
-//     io.in(query.id).emit('updateTurnScore', {
-
-//     })
-// });
-
-
-// document.querySelector('.btn-p1').addEventListener("click", function(){
-//     document.querySelector("#text-p0").textContent = document.querySelector('.p1-name').value;
-//     player1Name = document.querySelector('.p1-name').value;
-//     console.log(`Player 1 name changed to ${document.querySelector('.p1-name').value}`);
-// });
-
-// document.querySelector('.btn-p2').addEventListener("click", function(){
-//     document.querySelector("#text-p1").textContent = document.querySelector('.p2-name').value;
-//     player2Name = document.querySelector('.p2-name').value;
-//     console.log(`Player 2 name changed to ${document.querySelector('.p2-name').value}`);
-// });
-
-// document.querySelector(".btn-max").addEventListener("click", function(){
-//    winningScore = document.querySelector(".max-score").value;
-//     console.log(`Max score changed to ${winningScore}`);
+// document.getElementById('copy').addEventListener('click', function() {
+//     var copyText = document.getElementById('roomId').innerHTML;
+//     document.execCommand('copy');
+//     alert('Room ID copied!');
 // });
 
 document.querySelector(".btn-roll").addEventListener('click', function() {
@@ -50,7 +32,8 @@ document.querySelector(".btn-roll").addEventListener('click', function() {
         socket.emit('requestTurnScore', {
             roundScore,
             playerTurn,
-            id:query.id
+            id:query.id,
+            dice
         });
     }
     else {
@@ -100,13 +83,15 @@ function checkTurn() {
         console.log('0');
         socket.emit('requestHostTurn', {
             id: query.id,
-            turn: playerTurn
+            turn: playerTurn,
+            hostName
         });
     } else if(playerTurn === 1) {
         console.log('1');
         socket.emit('requestPairTurn', {
             id: query.id,
-            turn:playerTurn
+            turn:playerTurn,
+            pairName
         });
     }
 };

@@ -182,14 +182,15 @@ io.on('connection', (socket) => {
     socket.on('requestTurnScore', (data) => {
         io.in(data.id).emit('updateTurnScore', {
             score: data.roundScore,
-            turn: data.playerTurn
+            turn: data.playerTurn,
+            dice:data.dice
         });
     });
 
     socket.on('requestHold', (data) => {
         io.in(data.id).emit('updateHoldScore', {
             scores: data.scores,
-            turn: data.playerTurn
+            turn: data.playerTurn,
         });
     });
 
@@ -198,12 +199,11 @@ io.on('connection', (socket) => {
         io.in(data.id).emit('updateNew');
         io.in(data.id).emit('pairOff');
         socket.emit('startGameBtn');
-        //change message new game
     });
 
     socket.on('hostTurnRequestFirst', (data) => {
         socket.emit('hostTurnFirst');
-        //change message game started by host
+        io.in(data.id).emit('gameStartMessage');
     });
 
     socket.on('switchcolor', function(data) {
@@ -217,7 +217,9 @@ io.on('connection', (socket) => {
         socket.broadcast.to(data.id).emit('hostOn', {
             data
         });
-         //change message player 1 turn
+        io.in(data.id).emit('hostTurnMessage', {
+            hostName: data.hostName  
+        });
     });
 
     socket.on('requestPairTurn', (data) => {
@@ -228,7 +230,9 @@ io.on('connection', (socket) => {
            data
        });
        socket.emit('startBtnDisable');
-       //change message player 2 turn 
+       io.in(data.id).emit('pairTurnMessage', {
+        pairName: data.pairName   
+        });
     });
 
     socket.on('playerTurnVar', (data) => {
