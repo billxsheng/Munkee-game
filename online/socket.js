@@ -4,7 +4,13 @@ var holdbtn = document.getElementById('btn-hold').classList;
 var rollbtn = document.getElementById('btn-roll').classList;
 var startbtn = document.getElementById('btn-start').classList;
 var newbtn = document.getElementById('btn-new').classList;
-
+var score0 = document.getElementById('score0');
+var score1 = document.getElementById('score1');
+var currScore0 = document.getElementById('curr-score0');
+var currScore1 = document.getElementById('curr-score1');
+var msg =  document.getElementById('message');
+var textP0 = document.querySelector("#text-p0");
+var textP1 = document.querySelector("#text-p1");
 
 function parseQuery(queryString) {
     var query = {};
@@ -29,12 +35,12 @@ socket.on('connect', () => {
 //toggle colors
 
 function toggleColor() {
-    document.querySelector("#text-p0").classList.toggle("act");
-    document.querySelector("#score0").classList.toggle("act");
-    document.querySelector("#curr-score0").classList.toggle("act");
-    document.querySelector("#text-p1").classList.toggle("act");
-    document.querySelector("#score1").classList.toggle("act");
-    document.querySelector("#curr-score1").classList.toggle("act");
+    textP0.classList.toggle("act");
+    score0.classList.toggle("act");
+    currScore0.classList.toggle("act");
+    textP1.classList.toggle("act");
+    score1.classList.toggle("act");
+    currScore1.classList.toggle("act");
 }
 
 //turn switch algorithm
@@ -87,19 +93,19 @@ socket.on('updateHoldScore', function(data) {
 
 //updating new game
 socket.on('updateNew', function() {
-    document.getElementById('score1').textContent = 0;
-    document.getElementById('curr-score1').textContent = 0;
-    document.getElementById('score0').textContent = 0;
-    document.getElementById('curr-score0').textContent = 0;
-    document.getElementById('message').textContent = "New Game";
+    score1.textContent = 0;
+    currScore1.textContent = 0;
+    score0.textContent = 0;
+    currScore0.textContent = 0;
+    msg.textContent = "New Game";
     //change message
     //change color
 });
 
 //p2 join update
 socket.on('p2Update', function(data) {
-    document.getElementById('text-p1').textContent = data.name; 
-    document.getElementById('message').textContent = "waiting for host to start game";
+    textP1.textContent = data.name; 
+    msg.textContent = "waiting for host to start game";
     // document.getElementById('btn-new').classList.remove('disabled');
     // document.getElementById('btn-hold').classList.remove('disabled');
     // document.getElementById('btn-roll').classList.remove('disabled');
@@ -109,11 +115,17 @@ socket.on('p2Update', function(data) {
 
 //turn messages
 socket.on('pairTurnMessage', function(data) {
-    document.getElementById('message').textContent = data.pairName + "'s turn"; 
+    msg.textContent = data.pairName + "'s turn"; 
 });
 
 socket.on('hostTurnMessage', function(data) {
-    document.getElementById('message').textContent = data.hostName + "'s turn"; 
+    msg.textContent = data.hostName + "'s turn"; 
+});
+
+//showing dice one roll
+socket.on('diceOne', function() {
+    diceDom = document.querySelector('.dice');
+    diceDom.src = "/images/dice1.png";
 });
 
 //start game btn
@@ -124,20 +136,19 @@ socket.on('startGameBtn', function(data) {
 
 socket.on('playerTurn', function(data) {
     playerTurn = data.turn;
-
 });
 
 socket.on('zero', function() {
-    document.getElementById('curr-score0').textContent = 0;
-    document.getElementById('curr-score1').textContent = 0;
+    currScore0.textContent = 0;
+    currScore1.textContent = 0;
 });
 
 socket.on('gameStartMessage', function() {
-    document.getElementById('message').textContent = "game started by host";
+    msg.textContent = "game started by host";
 });
 
 socket.on('playerWin', function(data) {
-    document.getElementById('message').textContent = data.name + " won!";
+    msg.textContent = data.name + " won!";
     document.querySelector("#text-p" + data.turn).textContent = "winner!";
 });
 

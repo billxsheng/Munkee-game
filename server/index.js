@@ -253,6 +253,10 @@ io.on('connection', (socket) => {
         });
     });
 
+    socket.on('diceOneRequest', (data) => {
+        io.in(data.id).emit('diceOne');
+    });
+
 
     socket.on('createGame', () => {
         socket.emit('hostJoined', {

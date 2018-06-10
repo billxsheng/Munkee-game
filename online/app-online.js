@@ -34,6 +34,9 @@ document.querySelector(".btn-roll").addEventListener('click', function() {
     }
     else {
         var query = parseQuery(window.location.search);
+        socket.emit('diceOneRequest', {
+            id:query.id
+        })
         socket.emit('zeroRequest', {
             turn: playerTurn,
             id: query.id
