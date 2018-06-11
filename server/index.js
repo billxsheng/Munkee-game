@@ -35,7 +35,7 @@ var newId = ((id) => {
 var scanId = ((id) => {
     return new Promise((resolve, reject) => {
         if(activeGames.includes(id) === true) {
-            resolve();
+            Promise.resolve();
         }
         else {
             Promise.reject();
@@ -120,37 +120,34 @@ app.post('/online/create/redirect', urlencodedParser, (req, res) => {
 //joining room data
 app.post('/online/join/redirect', urlencodedParser, (req, res) => {
     console.log(req.body.id);
-    // scanId((req.body.id)).then(() => {
-    //     res.redirect(url.format({
-    //         pathname:"/online/room/",
-    //         query: {
-    //             "id": id,
-    //             "hostname": req.body.name
-    //         }
-    //     }));
-    // }).catch(() => {
-    //     res.send('Invalid ID.');
-    // });
-    res.redirect(url.format({
-                pathname:"/online/room/",
-                query: {
-                    "id": req.body.id,
-                },
+    scanId((req.body.id)).catch(() => {
+        console.log('invalid');
+        res.send('Invalid ID.');
+    });
+    var room = io.sockets.adapter.rooms[req.body.id];
+    if(room.length < 2) {
+        res.redirect(url.format({
+            pathname:"/online/room/",
+            query: {
+                "id": req.body.id,
+            },
     }));
-
     hbs.registerHelper('getP2Name', () => {
-        return req.body.name;
+    return req.body.name;
     });
 
     hbs.registerHelper('fetchMsg', () => {
-        return "P2 CONNECTED";
+    return "P2 CONNECTED";
     });
 
     io.in(req.body.id).emit('p2Update', {
-        name: req.body.name
+    name: req.body.name
     });
 
     io.in(req.body.id).emit('startGameBtn');
+    } else {
+        res.send('Sorry but it seems that the room is full.')
+    }
 });
 
 //route to join a room
@@ -264,6 +261,9 @@ io.on('connection', (socket) => {
         })
     })
 
+    socket.on('disconnect', () => {
+        io.in(socket.id).emit('disconnecting');
+    });
 });
 
 //listen

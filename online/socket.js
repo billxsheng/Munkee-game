@@ -98,19 +98,12 @@ socket.on('updateNew', function() {
     score0.textContent = 0;
     currScore0.textContent = 0;
     msg.textContent = "New Game";
-    //change message
-    //change color
 });
 
 //p2 join update
 socket.on('p2Update', function(data) {
     textP1.textContent = data.name; 
     msg.textContent = "waiting for host to start game";
-    // document.getElementById('btn-new').classList.remove('disabled');
-    // document.getElementById('btn-hold').classList.remove('disabled');
-    // document.getElementById('btn-roll').classList.remove('disabled');
-
-    //enable btns
 });
 
 //turn messages
@@ -134,25 +127,42 @@ socket.on('startGameBtn', function(data) {
     newbtn.remove('disabled');
 });
 
+//returning player turn number
 socket.on('playerTurn', function(data) {
     playerTurn = data.turn;
 });
 
+//resetting current scores to 0
 socket.on('zero', function() {
     currScore0.textContent = 0;
     currScore1.textContent = 0;
 });
 
+//message to start the game
 socket.on('gameStartMessage', function() {
     msg.textContent = "game started by host";
 });
 
+//message when a player wins
 socket.on('playerWin', function(data) {
     msg.textContent = data.name + " won!";
     document.querySelector("#text-p" + data.turn).textContent = "winner!";
 });
 
-
+//btns on pair when p2 joins
 socket.on('p2BtnUpdate', function() {
     rollbtn.remove('disabled');
+});
+
+//disconnect
+socket.on('disconnecting', function() {
+    msg.textContent = "session ended";
+    holdbtn.add('disabled');
+    startbtn.add('disabled');
+    rollbtn.add('disabled');
+    newbtn.add('disabled');
+    score0.textContent = 0;
+    score1.textContent = 0;
+    currScore0.textContent = 0;
+    currScore1.textContent = 0;
 });
