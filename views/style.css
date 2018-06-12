@@ -10,6 +10,7 @@
     height: 120vh;
     
 }
+
 .title {
     text-align: center;
     position: relative;
@@ -192,18 +193,113 @@ h3 {
     font-family: "Roboto";
 }
 
+@media (max-width: 991.98px) {
+    
 
+    .p0 {
+        width: 30%;
+        display: inline-block;
+        
+    }
+    
+    .p2 {
+        width: 30%;;
+        display: inline-block;
+    }
+    
+    .btn-jumbo {
+        width: 30%;
+        display: inline-block;
+    }
+    
+    .btn {
+        width: 120px;
+    }
+    
+    .main-text {
+        font-size: 25px;;
+    }
+    .dice {
+        width: 120px;
+        left: 50%;
+        margin-left: -30%;;
+    }
+    
+    .col-md-4 {
+        display: inline-block;
+    }
+    
+    .btn-new {
+        position: relative;
+        top: -15px;
+    }
+    
+    .o1,
+    .o2,
+    .o3 {
+        width: 100%;
+        position: relative;
+        top: -100px;
+    }
+    
+    .o1 a,
+    .o2 a,
+    .o3 a {
+        width: 100%;
+        position: relative;
+        top: 140px;
+        margin-bottom: 10px;
+    }
+    
+    .o1 input,
+    .o2 input,
+    .o3 input {
+        margin: 10px 10px 40px 10px;
+    }
+    
+    
+}
 
+@media (max-width: 767.98px) {
+    
+    .nav-pills {
+        
+    }
+    
+    
+     .p0 {
+        width: 33%;
+        display: inline-block;
+        
+        
+    }
+    
+    .p2 {
+        width: 33%;;
+        display: inline-block;
+    }
+    
+    .btn-jumbo {
+        width: 30%;
+        display: inline-block;
+    }
+}
 
-
-
-
-
-
-
-
-
-
+@media (max-width: 575.98px) {
+    * {
+    }
+    
+    .nav-pills li {
+        width: 70px;
+        margin: 0 20px 0 -50px;
+        font-size: 10px;
+    }
+    
+    .main-text {
+        font-size: 20px;
+    }
+    
+}
 
 
 

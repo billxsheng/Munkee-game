@@ -9,10 +9,6 @@ const bodyParser = require('body-parser');
 const url = require('url');
 const uniqId = require('uniqid');
 
-
-//active array 
-var activeGames = [];
-
 //new id function
 var newId = ((id) => {
     return new Promise((resolve, reject) => {
@@ -99,6 +95,7 @@ app.post('/online/create/redirect', urlencodedParser, (req, res) => {
         pathname:"/online/room/",
         query: {
             "id": id,
+            "host": true
         }
     }));
 
@@ -262,6 +259,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on('disconnect', () => {
+
         io.in(socket.id).emit('disconnecting');
     });
 });
