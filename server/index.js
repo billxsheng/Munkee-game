@@ -73,7 +73,7 @@ app.post('/online/create/redirect', urlencodedParser, (req, res) => {
     });
     
     game.save().then(() => {
-        console.log('room joined');
+        console.log('game saved to db');
     }).catch(() => {
         console.log('error saving to db');
     });
@@ -106,9 +106,13 @@ app.post('/online/join/redirect', urlencodedParser, (req, res) => {
     console.log(req.body.id);
     var room = io.sockets.adapter.rooms[req.body.id];
     if(room.length < 2) {
-        //get game by id
-        //if found update pair and save
-        //else res.send
+        Game.findOneAndUpdate({gameId: req.body.id}, {$set: {pair: req.body.name}}, {new:true},   (err, game) => {
+            console.log(game);
+            if(err) {
+                console.log('error', err);
+                //res.send('An unexpected error occured. Please enter a valid game ID.');
+            }
+        });
         res.redirect(url.format({
             pathname:"/online/room/",
             query: {
@@ -258,12 +262,11 @@ io.on('connection', (socket) => {
     //disconnect
     socket.on('disconnect', () => {
         io.in(socket.id).emit('disconnecting');
-        console.log(socket.id);
         //delete room from db
     });
 });
 
 //listen
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`started ${port}`);
 });

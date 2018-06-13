@@ -8,6 +8,8 @@ var gameSchema = mongoose.Schema({
 });
 
 
+
+
 var Game = mongoose.model('Game', gameSchema);
 
 module.exports = {Game};
