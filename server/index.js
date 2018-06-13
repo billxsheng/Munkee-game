@@ -63,6 +63,8 @@ app.post('/online/create/redirect', urlencodedParser, (req, res) => {
     });
     game.save().then(() => {
         console.log('room joined');
+    }).catch(() => {
+        console.log('error saving to db');
     });
     //fix this lol
     res.redirect(url.format({
