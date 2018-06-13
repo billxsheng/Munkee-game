@@ -3,12 +3,21 @@ const express = require('express');
 const hbs = require('hbs');
 var app = express();
 const socketIO = require('socket.io');
+const mongoose = require('mongoose');
 const http = require('http');
 const bodyParser = require('body-parser');
 const url = require('url');
 const uniqId = require('uniqid');
 var {Game} = require('../models/games');
 
+//mongoose
+mongoose.Promise = global.Promise;
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/munkee', function(e) {
+    console.log(e);
+});
+
+
+console.log('app starts');
 //check game middleware
 var gameCheck = ((req, res, next) => {
     //check active games
@@ -56,17 +65,19 @@ app.get('/online/create',(req, res) => {
 //posting room data
 app.post('/online/create/redirect', urlencodedParser, (req, res) => {
     var id = uniqId();
+
     var game = new Game({
         gameId : id,
         host : req.body.name,
         pair : undefined
     });
+    
     game.save().then(() => {
         console.log('room joined');
     }).catch(() => {
         console.log('error saving to db');
     });
-    //fix this lol
+
     res.redirect(url.format({
         pathname:"/online/room/",
         query: {
@@ -143,7 +154,6 @@ io.on('connection', (socket) => {
         console.log(io.of('/').in(query.id).clients);
         if((io.of('/').in(query.id).clients.length) < 2) {
             socket.join(query.id);
-            console.log('joined room', query.id);
         } else {
             console.log('max players exceeded');
         }
@@ -254,6 +264,6 @@ io.on('connection', (socket) => {
 });
 
 //listen
-server.listen(port, () => {
+app.listen(port, () => {
     console.log(`started ${port}`);
 });

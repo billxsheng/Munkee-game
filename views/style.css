@@ -192,8 +192,14 @@ h3 {
     color: rgba(8, 7, 7, 0.79);
     font-family: "Roboto";
 }
+    
+
 
 @media (max-width: 991.98px) {
+    
+    .overlay-btn {
+        display: none;
+    }
     
 
     .p0 {
@@ -257,13 +263,12 @@ h3 {
         margin: 10px 10px 40px 10px;
     }
     
-    
 }
 
 @media (max-width: 767.98px) {
     
     .nav-pills {
-        
+        display: none;
     }
     
     
@@ -283,17 +288,19 @@ h3 {
         width: 30%;
         display: inline-block;
     }
+    
+    .overlay-btn {
+        font-size: 40px !important;
+        float: right;
+        position: absolute;
+        margin: 25px 0 0 40px;
+    }
 }
 
 @media (max-width: 575.98px) {
     * {
     }
     
-    .nav-pills li {
-        width: 70px;
-        margin: 0 20px 0 -50px;
-        font-size: 10px;
-    }
     
     .main-text {
         font-size: 20px;

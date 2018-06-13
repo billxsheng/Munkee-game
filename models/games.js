@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 
-var gameSchema = new mongoose.Schema({
+var gameSchema = mongoose.Schema({
     gameId: String,
     host: String,
     pair: String
