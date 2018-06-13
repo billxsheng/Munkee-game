@@ -2,42 +2,12 @@
 const express = require('express');
 const hbs = require('hbs');
 var app = express();
-const path = require('path');
 const socketIO = require('socket.io');
 const http = require('http');
 const bodyParser = require('body-parser');
 const url = require('url');
 const uniqId = require('uniqid');
-
-//new id function
-var newId = ((id) => {
-    return new Promise((resolve, reject) => {
-        if(activeGames.includes(id) === true) {
-            Promise.reject();
-        }
-        else {
-            console.log('new id succeeded')
-            activeGames.push(id);
-            activeGames.forEach(function(item, index, array) {
-                console.log(item, index);
-            });
-
-            resolve();
-        }
-    });
-});
-
-//scan id function
-var scanId = ((id) => {
-    return new Promise((resolve, reject) => {
-        if(activeGames.includes(id) === true) {
-            Promise.resolve();
-        }
-        else {
-            Promise.reject();
-        }
-    });
-});
+var {Game} = require('../models/games');
 
 //check game middleware
 var gameCheck = ((req, res, next) => {
@@ -55,6 +25,8 @@ app.set('view engine', 'hbs');
 //connecting statics
 app.use(express.static('views'));
 app.use(express.static('online'));
+
+//port
 const port = process.env.PORT || 3000;
 
 //socket.io config
@@ -84,13 +56,15 @@ app.get('/online/create',(req, res) => {
 //posting room data
 app.post('/online/create/redirect', urlencodedParser, (req, res) => {
     var id = uniqId();
-    console.log(id);
-    newId((id)).then(() => {
-        console.log('Successfully added to active games.');
-    }).catch((e) => {
-        res.send('An unexpected error occured.');
-    })
-    //add id into array of active id's
+    var game = new Game({
+        gameId : id,
+        host : req.body.name,
+        pair : undefined
+    });
+    game.save().then(() => {
+        console.log('room joined');
+    });
+    //fix this lol
     res.redirect(url.format({
         pathname:"/online/room/",
         query: {
@@ -117,12 +91,11 @@ app.post('/online/create/redirect', urlencodedParser, (req, res) => {
 //joining room data
 app.post('/online/join/redirect', urlencodedParser, (req, res) => {
     console.log(req.body.id);
-    scanId((req.body.id)).catch(() => {
-        console.log('invalid');
-        res.send('Invalid ID.');
-    });
     var room = io.sockets.adapter.rooms[req.body.id];
     if(room.length < 2) {
+        //get game by id
+        //if found update pair and save
+        //else res.send
         res.redirect(url.format({
             pathname:"/online/room/",
             query: {
@@ -163,6 +136,7 @@ app.get('/online/room', gameCheck, (req, res) => {
 io.on('connection', (socket) => {
     console.log('User connected.');
 
+    //join
     socket.on('join', (query) => {
         console.log(io.of('/').in(query.id).clients);
         if((io.of('/').in(query.id).clients.length) < 2) {
@@ -173,6 +147,7 @@ io.on('connection', (socket) => {
         }
     });
 
+    //roll request
     socket.on('requestTurnScore', (data) => {
         io.in(data.id).emit('updateTurnScore', {
             score: data.roundScore,
@@ -181,6 +156,7 @@ io.on('connection', (socket) => {
         });
     });
 
+    //hold request
     socket.on('requestHold', (data) => {
         io.in(data.id).emit('updateHoldScore', {
             scores: data.scores,
@@ -188,6 +164,7 @@ io.on('connection', (socket) => {
         });
     });
 
+    //new game request
     socket.on('requestNew', (data) => {
         console.log('request new');
         io.in(data.id).emit('updateNew');
@@ -195,19 +172,23 @@ io.on('connection', (socket) => {
         socket.emit('startGameBtn');
     });
 
+    //request to start game
     socket.on('hostTurnRequestFirst', (data) => {
         socket.emit('hostTurnFirst');
         io.in(data.id).emit('gameStartMessage');
     });
 
+    //emits 0
     socket.on('zeroRequest', (data) => {
         io.in(data.id).emit('zero');
     });
 
+    //switch color
     socket.on('switchcolor', function(data) {
         io.in(data.id).emit('switchColor');
     });
 
+    //changes UI on turn
     socket.on('requestHostTurn', (data) => {
         socket.emit('pairOff', {
             data
@@ -220,6 +201,7 @@ io.on('connection', (socket) => {
         });
     });
 
+    //changes UI on turn
     socket.on('requestPairTurn', (data) => {
        socket.emit('hostOff', {
            data
@@ -233,12 +215,14 @@ io.on('connection', (socket) => {
         });
     });
 
+    //emits player turn
     socket.on('playerTurnVar', (data) => {
         io.in(data.id).emit('playerTurn', {
             turn:data.turn
         });
     });
 
+    //player wins
     socket.on('playerWinRequest', (data) => {
         io.in(data.id).emit('pairOff');
         io.in(data.id).emit('playerWin', {
@@ -247,20 +231,23 @@ io.on('connection', (socket) => {
         });
     });
 
+    //turn dice 1 config
     socket.on('diceOneRequest', (data) => {
         io.in(data.id).emit('diceOne');
     });
 
-
+    //create game
     socket.on('createGame', () => {
         socket.emit('hostJoined', {
             
         })
     })
 
+    //disconnect
     socket.on('disconnect', () => {
-
         io.in(socket.id).emit('disconnecting');
+        console.log(socket.id);
+        //delete room from db
     });
 });
 

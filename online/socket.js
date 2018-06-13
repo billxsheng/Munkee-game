@@ -156,7 +156,9 @@ socket.on('p2BtnUpdate', function() {
 
 //disconnect
 socket.on('disconnecting', function() {
-    msg.textContent = "session ended";
+    msg.textContent = "lobby closed because a player left :( ";
+    msg.style.color = "red";
+    msg.style.fontSize = "15px";
     holdbtn.add('disabled');
     startbtn.add('disabled');
     rollbtn.add('disabled');
