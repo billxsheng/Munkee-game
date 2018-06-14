@@ -8,13 +8,6 @@ var player1Name = "player 1";
 var player2Name = "player 2";
 var query = parseQuery(window.location.search);
 
-
-// document.getElementById('copy').addEventListener('click', function() {
-//     var copyText = document.getElementById('roomId').innerHTML;
-//     document.execCommand('copy');
-//     alert('Room ID copied!');
-// });
-
 document.querySelector(".btn-roll").addEventListener('click', function() {
     var dice = Math.floor((Math.random()*5)+1);
     diceDom = document.querySelector('.dice');

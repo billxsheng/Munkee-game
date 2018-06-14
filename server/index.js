@@ -164,12 +164,7 @@ io.on('connection', (socket) => {
 
     //join
     socket.on('join', (query) => {
-        console.log(io.of('/').in(query.id).clients);
-        if ((io.of('/').in(query.id).clients.length) < 2) {
-            socket.join(query.id);
-        } else {
-            console.log('max players exceeded');
-        }
+        socket.join(query.id);
     });
 
     //roll request
@@ -270,9 +265,10 @@ io.on('connection', (socket) => {
 
     //disconnect
     socket.on('disconnecting', () => {
-        io.in(socket.id).emit('disconnect');
+        console.log('Player disconnected');
         var id = Object.keys(socket.rooms);
         console.log(id[1]);
+        io.in(id[1]).emit('disconnect');
         Game.findOneAndRemove({ gameId: id[1] }).then(() => {
             console.log('Game removed from database.');
         });
