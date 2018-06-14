@@ -194,8 +194,14 @@ io.on('connection', (socket) => {
 
     //new game request
     socket.on('requestNew', (data) => {
+        var id = Object.keys(socket.rooms);
+        Game.findOne({gameId: id[1]}).then((game) => {
+            io.in(data.id).emit('updateNew', {
+                host: game.host,
+                pair: game.pair
+            });
+        });
         console.log('request new');
-        io.in(data.id).emit('updateNew');
         io.in(data.id).emit('pairOff');
         socket.emit('startGameBtn');
     });

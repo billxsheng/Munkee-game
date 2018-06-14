@@ -30,7 +30,7 @@ document.getElementById("curr-score0").textContent = 0;
 document.getElementById("curr-score1").textContent = 0;
 
 document.querySelector("#btn-roll").addEventListener('click', function () {
-    var dice = Math.floor((Math.random() * 5) + 1);
+    var dice = Math.floor((Math.random() * 6) + 1);
     diceDom = document.querySelector('.dice');
     diceDom.src = "images/dice" + dice + ".png";
     console.log(dice);

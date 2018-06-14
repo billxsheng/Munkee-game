@@ -49,7 +49,7 @@ socket.on('hostTurnFirst', function () {
     rollbtn.remove('disabled');
 });
 
-socket.on('pairOff', function (data) {
+socket.on('pairOff', function () {
     holdbtn.add('disabled');
     rollbtn.add('disabled');
 });
@@ -92,12 +92,14 @@ socket.on('updateHoldScore', function (data) {
 });
 
 //updating new game
-socket.on('updateNew', function () {
+socket.on('updateNew', function (data) {
     score1.textContent = 0;
     currScore1.textContent = 0;
     score0.textContent = 0;
     currScore0.textContent = 0;
     msg.textContent = "New Game";
+    textP0.textContent = data.host;
+    textP1.textContent = data.pair;
 });
 
 //p2 join update

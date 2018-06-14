@@ -3,13 +3,13 @@ var playerTurn = 0;
 var currentScore1 = 0;
 var currentScore2 = 0;
 var roundScore = 0;
-var winningScore = 100;
+var winningScore = 10;
 var player1Name = "player 1";
 var player2Name = "player 2";
 var query = parseQuery(window.location.search);
 
 document.querySelector(".btn-roll").addEventListener('click', function() {
-    var dice = Math.floor((Math.random()*5)+1);
+    var dice = Math.floor((Math.random()*6)+1);
     diceDom = document.querySelector('.dice');
     diceDom.src = "/images/dice" + dice + ".png";
     console.log(dice);
