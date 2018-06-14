@@ -11,6 +11,14 @@
     
 }
 
+.error {
+    text-align: center;
+    color: red;
+    font-size: 15px;
+    position: relative;
+    top: 30px;
+}
+
 .title {
     text-align: center;
     position: relative;

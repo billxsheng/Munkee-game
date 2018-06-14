@@ -106,18 +106,24 @@ app.post('/online/join/redirect', urlencodedParser, (req, res) => {
     };
     var room = io.sockets.adapter.rooms[req.body.id];
     if (room === "") {
-        res.send('Please enter a valid game ID.');
+        res.render('join', {
+            error:'Please enter a valid game ID.'
+        });
     };
     Game.findOne({ gameId: req.body.id }, (err, game) => {
         if (!game) {
-            res.send('Please enter a valid game ID.');
+            res.render('join', {
+                error:'Please enter a valid game ID.'
+            });
         } else {
             if (room.length < 2) {
                 Game.findOneAndUpdate({ gameId: req.body.id }, { $set: { pair: req.body.name } }, { new: true }, (err, game) => {
                     console.log(game);
                     if (err) {
                         console.log('error', err);
-                        res.send('Please enter a valid game ID.');
+                        res.render('join', {
+                            error:'Please enter a valid game ID.'
+                        })
                     }
                 });
                 res.redirect(url.format({
@@ -140,7 +146,9 @@ app.post('/online/join/redirect', urlencodedParser, (req, res) => {
 
                 io.in(req.body.id).emit('startGameBtn');
             } else {
-                res.send('Sorry, but it seems that the room is full.')
+                res.render('join', {
+                    error:'The room is full.'
+                });
             }
         }
     });
