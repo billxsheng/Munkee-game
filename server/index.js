@@ -201,7 +201,6 @@ io.on('connection', (socket) => {
                 pair: game.pair
             });
         });
-        console.log('request new');
         io.in(data.id).emit('pairOff');
         socket.emit('startGameBtn');
     });

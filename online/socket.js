@@ -33,7 +33,6 @@ socket.on('connect', () => {
 });
 
 //toggle colors
-
 function toggleColor() {
     textP0.classList.toggle("act");
     score0.classList.toggle("act");
@@ -149,6 +148,7 @@ socket.on('gameStartMessage', function () {
 socket.on('playerWin', function (data) {
     msg.textContent = data.name + " won!";
     document.querySelector("#text-p" + data.turn).textContent = "winner!";
+    scores = [0,0];
 });
 
 //btns on pair when p2 joins
