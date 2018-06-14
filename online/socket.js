@@ -1,4 +1,4 @@
-var socket = io(); 
+var socket = io();
 
 var holdbtn = document.getElementById('btn-hold').classList;
 var rollbtn = document.getElementById('btn-roll').classList;
@@ -8,7 +8,7 @@ var score0 = document.getElementById('score0');
 var score1 = document.getElementById('score1');
 var currScore0 = document.getElementById('curr-score0');
 var currScore1 = document.getElementById('curr-score1');
-var msg =  document.getElementById('message');
+var msg = document.getElementById('message');
 var textP0 = document.querySelector("#text-p0");
 var textP1 = document.querySelector("#text-p1");
 
@@ -44,55 +44,55 @@ function toggleColor() {
 }
 
 //turn switch algorithm
-socket.on('hostTurnFirst', function() {
+socket.on('hostTurnFirst', function () {
     holdbtn.remove('disabled');
     rollbtn.remove('disabled');
 });
 
-socket.on('pairOff', function(data) {
+socket.on('pairOff', function (data) {
     holdbtn.add('disabled');
     rollbtn.add('disabled');
 });
 
-socket.on('hostOn', function(data) {
+socket.on('hostOn', function (data) {
     holdbtn.remove('disabled');
     rollbtn.remove('disabled');
 });
 
-socket.on('hostOff', function(data) {
+socket.on('hostOff', function (data) {
     holdbtn.add('disabled');
     rollbtn.add('disabled');
 });
 
-socket.on('pairOn', function(data) {
+socket.on('pairOn', function (data) {
     holdbtn.remove('disabled');
     rollbtn.remove('disabled');
 });
 
-socket.on('startBtnDisable', function() {
+socket.on('startBtnDisable', function () {
     startbtn.add('disabled');
 });
 
 //color switch algorithm
-socket.on('switchColor', function() {
+socket.on('switchColor', function () {
     toggleColor();
 });
 
 //updating roll score
-socket.on('updateTurnScore', function(data) {
+socket.on('updateTurnScore', function (data) {
     document.getElementById('curr-score' + data.turn).textContent = data.score;
     diceDom = document.querySelector('.dice');
     diceDom.src = "/images/dice" + data.dice + ".png";
 });
 
 //updating hold score
-socket.on('updateHoldScore', function(data) {
+socket.on('updateHoldScore', function (data) {
     document.getElementById('score' + data.turn).textContent = data.scores[data.turn];
     document.getElementById('curr-score' + data.turn).textContent = 0;
 });
 
 //updating new game
-socket.on('updateNew', function() {
+socket.on('updateNew', function () {
     score1.textContent = 0;
     currScore1.textContent = 0;
     score0.textContent = 0;
@@ -101,61 +101,61 @@ socket.on('updateNew', function() {
 });
 
 //p2 join update
-socket.on('p2Update', function(data) {
-    textP1.textContent = data.name; 
+socket.on('p2Update', function (data) {
+    textP1.textContent = data.name;
     msg.textContent = "waiting for host to start game";
 });
 
 //turn messages
-socket.on('pairTurnMessage', function(data) {
-    msg.textContent = data.pairName + "'s turn"; 
+socket.on('pairTurnMessage', function (data) {
+    msg.textContent = data.pairName + "'s turn";
 });
 
-socket.on('hostTurnMessage', function(data) {
-    msg.textContent = data.hostName + "'s turn"; 
+socket.on('hostTurnMessage', function (data) {
+    msg.textContent = data.hostName + "'s turn";
 });
 
 //showing dice one roll
-socket.on('diceOne', function() {
+socket.on('diceOne', function () {
     diceDom = document.querySelector('.dice');
     diceDom.src = "/images/dice1.png";
 });
 
 //start game btn
-socket.on('startGameBtn', function(data) {
+socket.on('startGameBtn', function (data) {
     startbtn.remove('disabled');
     newbtn.remove('disabled');
 });
 
 //returning player turn number
-socket.on('playerTurn', function(data) {
+socket.on('playerTurn', function (data) {
     playerTurn = data.turn;
 });
 
 //resetting current scores to 0
-socket.on('zero', function() {
+socket.on('zero', function () {
     currScore0.textContent = 0;
     currScore1.textContent = 0;
 });
 
 //message to start the game
-socket.on('gameStartMessage', function() {
+socket.on('gameStartMessage', function () {
     msg.textContent = "game started by host";
 });
 
 //message when a player wins
-socket.on('playerWin', function(data) {
+socket.on('playerWin', function (data) {
     msg.textContent = data.name + " won!";
     document.querySelector("#text-p" + data.turn).textContent = "winner!";
 });
 
 //btns on pair when p2 joins
-socket.on('p2BtnUpdate', function() {
+socket.on('p2BtnUpdate', function () {
     rollbtn.remove('disabled');
 });
 
 //disconnect
-socket.on('disconnecting', function() {
+socket.on('disconnect', function () {
     msg.textContent = "lobby closed because a player left :( ";
     msg.style.color = "red";
     msg.style.fontSize = "15px";
