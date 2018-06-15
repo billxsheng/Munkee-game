@@ -2,7 +2,7 @@
     font-family: "bungee";
 }
 
-.container-fluid {
+.container-fluid-main {
     background-image:-webkit-gradient(linear, left top, left bottom, from(rgba(8, 7, 7, 0.79)), to(rgba(0, 0, 0, 0))), url(/images/wallpaper.jpg);
     background-image:linear-gradient(rgba(8, 7, 7, 0.79), rgba(0, 0, 0, 0)), url(images/wallpaper.jpg);
     background-position: center;  
@@ -10,8 +10,15 @@
     height: 150vh;
 }
 
-.nav-pills {
-    display: none;
+.navbar {
+    border-bottom-left-radius: 20px !important;
+    border-bottom-right-radius: 20px !important;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.overlay-btn {
+    font-size: 30px !important;
 }
 
 
@@ -68,6 +75,7 @@
 .jumbo-game {
     position: relative !important;
     margin-top: 40px !important;
+    height: 580px;
 }
 
 .btn-jumbo {
