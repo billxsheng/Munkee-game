@@ -63,7 +63,6 @@ app.get('/online/create', (req, res) => {
 //posting room data
 app.post('/online/create/redirect', urlencodedParser, (req, res) => {
     var id = uniqId();
-
     var game = new Game({
         gameId: id,
         host: req.body.name,
