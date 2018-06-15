@@ -80,7 +80,7 @@ socket.on('switchColor', function () {
 //updating roll score
 socket.on('updateTurnScore', function (data) {
     document.getElementById('curr-score' + data.turn).textContent = data.score;
-    diceDom = document.querySelector('.dice');
+    diceDom = document.querySelector('#dice');
     diceDom.src = "/images/dice" + data.dice + ".png";
 });
 
