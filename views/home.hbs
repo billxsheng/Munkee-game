@@ -4,7 +4,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="/style.css">
     <link href="https://fonts.googleapis.com/css?family=Bungee|Faster+One" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -13,7 +13,7 @@
 
 <body>
     <div class="container-fluid">
-        <a class="btn overlay-btn"><i class="fas fa-bars"></i></a>
+<!--        <a class="btn overlay-btn"><i class="fas fa-bars"></i></a>-->
         <ul class="nav nav-pills justify-content-center main-nav">
             <li class="active"><a href="#play" data-toggle="tab">quick game</a></li>
             <li><a href="/online">ONLINE</a></li>
@@ -26,22 +26,26 @@
         </div>
         <div class="tab-content">
             <div id="play" class="tab-pane fade in active">
-                <div class="jumbotron">
-                    <div class="col-md-4 p0">
-                        <div id="text-p0" class="main-text act">Player 1</div>
-                        <div id="score0" class="score0 act2">0</div>
-                        <div class="container curr-container">
+                <div class="jumbotron jumbo-game">
+                    <div class="col-sm-4  p0 block-game">
+                        <div id="text-p0" class="col1 col-sm-4 main-text act">Player 1</div>
+                        <div id="score0" class="col1 col-sm-4 score0 act2">0</div>
+                        <div class="col1 col-sm-4 container curr-container">
                             <h3>Current</h3>
                             <div id="curr-score0" class="score-curr0 act3">0</div>
                         </div>
                     </div>
-                    <div class="col-md-4 btn-div">
-                        <div class="jumbotron btn-jumbo"> <a id="btn-new" class="btn btn-primary btn-new"><i class="fas fa-plus"></i>&nbsp;&nbsp;New Game</a> <img class="dice" id="dice" src="images/dice1.png"> <a id="btn-hold" class="btn btn-primary btn-hold-room"><i class="fas fa-hand-paper"></i>&nbsp;&nbsp;Hold</a> <a id="btn-roll" class="btn btn-primary btn-roll-home"><i class="fas fa-play"></i>&nbsp;&nbsp;Roll</a> </div>
+                    <div class="col-sm-4 btn-div block-game">
+                        <div class="jumbotron btn-jumbo"> 
+                        <a id="btn-new" class="btn btn-primary btn-new btn-home"><i class="fas fa-plus"></i>&nbsp;&nbsp;New Game</a> 
+                        <a id="btn-hold" class="btn btn-primary btn-hold-room btn-home"><i class="fas fa-hand-paper"></i>&nbsp;&nbsp;Hold</a> 
+                        <a id="btn-roll" class="btn btn-primary btn-roll-home btn-home"><i class="fas fa-play"></i>&nbsp;&nbsp;Roll</a> </div>
+                        <img class="dice" id="dice" src="images/dice1.png"> 
                     </div>
-                    <div class="col-md-4 p2">
-                        <div id="text-p1" class="main-text">PLAYER 2</div>
-                        <div id="score1" class="score1">0</div>
-                        <div class="container curr-container">
+                    <div class="col-sm-4  p2 block-game">
+                        <div id="text-p1" class="col-sm-4 main-text">PLAYER 2</div>
+                        <div id="score1" class="col-sm-4 score1">0</div>
+                        <div class="col-sm-4 container curr-container">
                             <h3>Current</h3>
                             <div id="curr-score1" class="score-curr1">0</div>
                         </div>
