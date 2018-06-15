@@ -17,11 +17,6 @@
     border-top-right-radius: 0;
 }
 
-.overlay-btn {
-    font-size: 30px !important;
-}
-
-
 .error {
     text-align: center;
     color: red;
@@ -44,6 +39,22 @@
     position: relative;
     top: 150px;
 }
+
+.p0-room {
+    position: relative;
+    top: 30px;
+}
+
+.btn-div-room {
+    position: relative;
+    top: 40px;
+}
+
+.p2-room {
+    position: relative;
+    top: 180px;
+}
+
 
 .title {
     text-align: center;
@@ -76,6 +87,12 @@
     position: relative !important;
     margin-top: 40px !important;
     height: 580px;
+}
+
+.jumbo-game-room {
+    position: relative !important;
+    margin-top: 40px !important;
+    height: 630px;
 }
 
 .btn-jumbo {
@@ -117,6 +134,7 @@
     color: rgba(8, 7, 7, 0.81);
     font-size: 30px;  
 }
+
 .logo {
     width: 100px;
     position: relative;
@@ -124,13 +142,11 @@
     margin-left: -50px;
     top: 50px;
 }
-.btn-div a {
-    display: block;
-}
+
 .btn-div-online {
     position: relative;
-    top: -50px;
 }
+
 .jumbotron-msg {
     background-color: #ededed !important;
 }
@@ -148,15 +164,6 @@
     left: -30px;
 }
 
-.btn-hold {
-    position: relative;
-    top: 155px;
-}
-
-.btn-roll {
-    position: relative;
-    top: 170px;
-}
 
 .curr-container {
     position: relative;
@@ -170,7 +177,7 @@
 
 .main-text {
     text-align: left;
-    font-size: 20px;
+    font-size: 15px;
     position: relative;
     width: 50% !important;
 }
@@ -191,8 +198,15 @@ h3 {
     position: relative;
     float: right;
     top: -82px;
+    margin-left: -200px !important;    
+}
+
+.dice-room {
+    width: 110px;
+    position: relative;
+    float: right;
+    top: -60px;
     margin-left: -200px !important;
-        
 }
 
 .act,
@@ -211,19 +225,20 @@ h3 {
 .title2 {
     text-align: center;
     position: relative;
-    top: 150px;
     font-size: 17px;
+    top: 30px;
 }
 
 .settings-btn {
     position: relative;
-    top: 230px;
+    top: -20px;
     width: 100%;
 }
 .input1 {
     position: relative;
-    top: 170px;
+    margin: 15px 0px 30px 0px;
     width: 100%;
+    margin-top: 30px;
     text-align: center;
 }
 
