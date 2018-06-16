@@ -187,7 +187,7 @@ io.on('connection', (socket) => {
     socket.on('requestHold', (data) => {
         io.in(data.id).emit('updateHoldScore', {
             scores: data.scores,
-            turn: data.playerTurn,
+            turn: data.playerTurn
         });
     });
 
@@ -202,6 +202,7 @@ io.on('connection', (socket) => {
         });
         io.in(data.id).emit('pairOff');
         socket.emit('startGameBtn');
+        io.in(data.id).emit('picReset');
     });
 
     //request to start game

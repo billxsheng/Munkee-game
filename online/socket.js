@@ -79,6 +79,8 @@ socket.on('switchColor', function () {
 
 //updating roll score
 socket.on('updateTurnScore', function (data) {
+    document.getElementById('dice').style.display = 'block';
+    document.getElementById('hold-msg').style.display = 'none';
     document.getElementById('curr-score' + data.turn).textContent = data.score;
     diceDom = document.querySelector('#dice');
     diceDom.src = "/images/dice" + data.dice + ".png";
@@ -88,6 +90,8 @@ socket.on('updateTurnScore', function (data) {
 socket.on('updateHoldScore', function (data) {
     document.getElementById('score' + data.turn).textContent = data.scores[data.turn];
     document.getElementById('curr-score' + data.turn).textContent = 0;
+    document.getElementById('dice').style.display = 'none';
+    document.getElementById('hold-msg').style.display = 'block';
 });
 
 //updating new game
@@ -118,7 +122,7 @@ socket.on('hostTurnMessage', function (data) {
 
 //showing dice one roll
 socket.on('diceOne', function () {
-    diceDom = document.querySelector('.dice');
+    diceDom = document.querySelector('#dice');
     diceDom.src = "/images/dice1.png";
 });
 
@@ -142,6 +146,14 @@ socket.on('zero', function () {
 //message to start the game
 socket.on('gameStartMessage', function () {
     msg.textContent = "game started by host";
+    document.getElementById('dice').style.display = 'block';
+    document.getElementById('dice').src = "/images/dice1.png";
+    document.getElementById('hold-msg').style.display = 'none';
+});
+
+//resets picture on start
+socket.on('picReset', function() {
+
 });
 
 //message when a player wins
@@ -149,6 +161,8 @@ socket.on('playerWin', function (data) {
     msg.textContent = data.name + " won!";
     document.querySelector("#text-p" + data.turn).textContent = "winner!";
     scores = [0,0];
+    roundScore = 0;
+    startbtn.add('disabled');
 });
 
 //btns on pair when p2 joins
