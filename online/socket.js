@@ -128,7 +128,7 @@ socket.on('diceOne', function () {
 
 //start game btn
 socket.on('startGameBtn', function (data) {
-    startbtn.add('disabled');
+    startbtn.remove('disabled');
     newbtn.remove('disabled');
 });
 
@@ -145,6 +145,7 @@ socket.on('zero', function () {
 
 //message to start the game
 socket.on('gameStartMessage', function () {
+    startbtn.add('disabled');
     msg.textContent = "game started by host";
     document.getElementById('dice').style.display = 'block';
     document.getElementById('dice').src = "/images/dice1.png";

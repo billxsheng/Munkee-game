@@ -1,7 +1,7 @@
 var scores = [0, 0];
 var playerTurn = 0;
 var roundScore = 0;
-var winningScore = 10;
+var winningScore = 100;
 var player1Name = "player 1";
 var player2Name = "player 2";
 var query = parseQuery(window.location.search);
