@@ -26,6 +26,7 @@
     top: 90px;
     font-size: 23px;
     width: 100px;
+    display: none;
 }
 
 .error {
@@ -124,7 +125,7 @@
     top: 30px;
     margin: 30px;
     width: 200px !important;
-    float: none;
+    float: none !important;
 }
 
 .create-input {
@@ -302,6 +303,7 @@ h3 {
     .playerHoldDice {
         width: 100px;
         left: 68%;
+        display: none;
     }
     
     .dice-room {
@@ -344,6 +346,7 @@ h3 {
     .playerHoldDice {
         left: 72%;
         top: 85px;
+        display: none;
     }
     
     .btn-div-room {
@@ -397,6 +400,7 @@ h3 {
     }
     .playerHoldDice {
         left: 67%;
+        display: none;
     }
   
 @media (min-width: 1200px) {
@@ -418,7 +422,8 @@ h3 {
     }
     
     .playerHoldDice {
-        left: 61%
+        left: 61%;
+        display: none;
     }
     
     .box {

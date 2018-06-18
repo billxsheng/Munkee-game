@@ -17,8 +17,18 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/munkee', 
 });
 
 //check game middleware
+var gameCheckDB = ((req, res, next) => {
+    console.log('Checking for game in database.');
+    Game.findOne({gameId: req.query.id}).then(() => {
+        console.log('game found')
+        next();
+    }).catch(() => {
+        res.render('/online');
+    });
+});
+
+//checking for empty request
 var gameCheck = ((req, res, next) => {
-    //check active games
     if (req.query.id == undefined) {
         res.redirect('/');
     } else {
@@ -160,7 +170,7 @@ app.get('/online/join', (req, res) => {
 });
 
 //route to join a room
-app.get('/online/room', gameCheck, (req, res) => {
+app.get('/online/room', [gameCheck, gameCheckDB], (req, res) => {
     res.render('room');
     //use url module
 });
