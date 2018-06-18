@@ -128,7 +128,7 @@ socket.on('diceOne', function () {
 
 //start game btn
 socket.on('startGameBtn', function (data) {
-    startbtn.remove('disabled');
+    startbtn.add('disabled');
     newbtn.remove('disabled');
 });
 
