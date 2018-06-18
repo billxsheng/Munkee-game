@@ -23,6 +23,7 @@ var gameCheckDB = ((req, res, next) => {
         console.log('game found')
         next();
     }).catch(() => {
+        console.log('game not found')
         res.render('/online');
     });
 });
