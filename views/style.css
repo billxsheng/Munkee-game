@@ -10,6 +10,7 @@
     height: 150vh;
 }
 
+
 .navbar {
     border-bottom-left-radius: 20px !important;
     border-bottom-right-radius: 20px !important;
@@ -21,10 +22,10 @@
     position: absolute;;
     text-align: center;
     color: #428bca;
-    left: 52%;
+    left: 60%;
     top: 90px;
     font-size: 23px;
-    display: none;
+    width: 100px;
 }
 
 .error {
@@ -32,7 +33,7 @@
     color: red;
     font-size: 15px;
     position: relative;
-    top: 30px;
+    top: 40px;
 }
 
 .p0 {
@@ -102,7 +103,7 @@
 .jumbo-game-room {
     position: relative !important;
     margin-top: 20px !important;
-    height: 630px;
+    height: 700px;
 }
 
 .btn-jumbo {
@@ -136,7 +137,7 @@
     position: relative;
     font-size: 60px;
     color: rgba(8, 7, 7, 0.81);
-    width: 20% !important;
+    width: 30px !important;
 }
 
 .score-curr0, .score-curr1 {
@@ -165,15 +166,17 @@
     text-align: center;
     color: rgb(73, 209, 68);
     font-size: 20px;
+    padding: 8px;
 }
 
 .btn-home {
     width: 120px;
-    margin: 10px 0px 10px 0px;
+    margin: 10px 0 10px 0;
     position: relative;
     left: -30px;
+    font-size: 12px !important;
+    padding: 8px !important;
 }
-
 
 .curr-container {
     position: relative;
@@ -183,6 +186,7 @@
     float: right;
     width: 40%;
     top: -115px;
+    max-width: 400px !important;
 }
 
 .main-text {
@@ -205,10 +209,12 @@ h3 {
 
 .dice {
     width: 110px;
-    position: relative;
+    position: absolute;
     float: right;
-    top: -82px;
-    margin-left: -200px !important;    
+    left: 57%;
+    top: 225px;
+    
+
 }
 
 .dice-room {
@@ -264,6 +270,171 @@ h3 {
     font-family: "Roboto";
 }
     
+.instructions {
+    color: black;
+    font-size: 15px !important;
+    position: relative;
+    font-family: 'roboto';
+    max-width: 500px !important;
+    
+}
+
+.instructions-cont {
+    position: relative;
+    top: 50px;
+    color: black;
+}
+
+.instruction-head {
+    font-size: 30px !important;
+    text-align: center !important;
+}
+
+
+@media only screen and (min-width: 576px) {
+
+    .dice {
+        width:  150px;
+        top: 225px;
+        left: 61%;
+    }
+    
+    .playerHoldDice {
+        width: 100px;
+        left: 68%;
+    }
+    
+    .dice-room {
+        width: 150px;
+        top: -90px;
+        left: -3%;
+    }
+    
+    .main-text {
+        font-size: 30px;
+    }
+    
+    .jumbo-game {
+        height: 640px;
+    }   
+    .btn-home {
+        display: block !important;
+    }
+    
+
+}
+
+@media (min-width: 768px) {
+
+
+    .col-sm-4 {
+        float: none !important;
+    }
+    
+    .dice {
+        width: 180px;
+        top: 230px;
+        left: 64%;
+    }
+    
+    .dice-room {
+        left: -8%;    
+    }
+    
+    .playerHoldDice {
+        left: 72%;
+        top: 85px;
+    }
+    
+    .btn-div-room {
+        position: relative !important;
+        top: 40px !important;    
+    }
+    
+    .block-game {
+        height: 120px;
+    }
+    
+    .btn-home {
+        top: -5px;
+        display: inline-block !important;
+        width: 80px;
+        height: 80px;
+        border-radius: 90px !important;
+        padding-top: 33px !important;
+        font-size: 11px !important;
+        margin-right: 10px;
+        
+    }
+    
+    .curr-container {
+        left: 200px;
+    }
+}
+
+
+@media (min-width: 992px) {
+    .box {
+        position: relative;
+        left: 100px;
+    }
+    
+    .btn-home {
+        left: 80px;
+    }
+    
+    .curr-container {
+        position: relative;
+        left: 200px;
+        width: 350px !important;
+    }
+    
+    .dice {
+        left: 61%;
+    }
+    .dice-room {
+        left: -18%;
+    }
+    .playerHoldDice {
+        left: 67%;
+    }
+  
+@media (min-width: 1200px) {
+   
+    .curr-container {
+        width:  500px !important;
+    }
+    
+    .main-text {
+        font-size: 32px !important;    
+    }
+    
+    .dice {
+        left: 58%;
+    }
+    
+    .dice-room {
+        left: -29%
+    }
+    
+    .playerHoldDice {
+        left: 61%
+    }
+    
+    .box {
+        position: relative;
+        left: 250px;
+    }
+    
+    .btn-home {
+        left: 230px;
+    }
+    
+    .btn-jumbo-room {
+        position: relative;
+        top: 30px;
+    }
+}
 
 
 
@@ -276,9 +447,4 @@ h3 {
 
 
 
-
-
-
-
-
-
+}

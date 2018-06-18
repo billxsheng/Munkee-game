@@ -17,12 +17,17 @@
             <h1>join A GAME</h1>
             <div class="jumbotron">
                 <form class="create-form" action="/online/join/redirect" method="post">
-                    <a href="/online" class="col-md-3 btn btn-primary create-part">back</a>
-                    <input type="text" name="id" class="col-md-3 create-part create-input" placeholder="Room ID"  autocomplete="off" autofocus>
-                    <input type="text" name="name" class="col-md-3 create-part create-input" placeholder="name" autocomplete="off" autofocus>
-                    <input type="submit" class="col-md-3 btn btn-primary create-part">
+                    <a href="/online" class="btn btn-primary create-part">back</a>
+                    <input type="text" name="id" class="create-part create-input" placeholder="Room ID"  autocomplete="off" autofocus>
+                    <input type="text" name="name" class="create-part create-input" placeholder="name" autocomplete="off" autofocus>
+                    <input type="submit" class="btn btn-primary create-part">
                 </form>
                 <div class="error">{{error}}</div>
+                <br>
+                <div class="container instructions-cont">
+                    <h1 class="instruction-head">How to play</h1>
+                    <p class="instructions container">Once you recieve the room ID, you can now join your desired opponent's game. The player who can first reach 100 on their global score wins. Be aware that if a player leaves the room or reloads the page, the room will close and a new room will have to be created.</p>
+                </div>
             </div>
         </div>
     </div>

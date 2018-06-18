@@ -26,8 +26,8 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="#play" data-toggle="tab">quick game</a></li>
-                        <li><a href="/online">ONLINE</a></li>
+                        <li><a href="#play" data-toggle="tab">quick game</a></li>
+                        <li class="active"><a href="/online">ONLINE</a></li>
                         <li><a href="https://www.youtube.com/watch?v=gVIvB-ahI4A" target="_blank">How to Play</a></li>
                         <li><a href="http://www.billsheng.me" target="_blank">About</a></li>
                     </ul>
@@ -50,11 +50,13 @@
                         </div>
                     </div>
                     <div class="col-md-4 p0-room block-game">
-                        <div id="text-p0" class="col-sm-4 main-text act">
-                            {{getHostName}}
-                        </div>
-                        <div id="score0" class="col-sm-4 score0 act">
-                            0
+                        <div class="box">
+                            <div id="text-p0" class="col-sm-4 main-text act">
+                                {{getHostName}}
+                            </div>
+                            <div id="score0" class="col-sm-4 score0 act">
+                                0
+                            </div>
                         </div>
                         <div class="col-sm-4 container curr-container">
                             <h3>
@@ -66,21 +68,23 @@
                         </div>
                     </div>
                     <div class="col-md-4 btn-div-room btn-div-online block-game">
-                        <div class="jumbotron btn-jumbo jumbotron-dark">
-                            <a id="btn-new" class="btn-home btn btn-primary btn-new disabled">&nbsp;&nbsp;New
-                Game</a> <a id="btn-start" class="btn-home btn btn-primary disabled">&nbsp;&nbsp;Start</a>
-                            <a id="btn-hold" class="btn-home btn btn-primary btn-hold disabled">&nbsp;&nbsp;Hold</a>
-                            <a id="btn-roll" class="btn-home btn btn-primary btn-roll disabled">&nbsp;&nbsp;Roll</a>
+                        <div class="jumbotron btn-jumbo jumbotron-dark btn-jumbo-room">
+                            <a id="btn-new" class="btn-home btn btn-primary btn-new disabled"><i class="fas fa-plus"></i>&nbsp;&nbsp;New</a> 
+                            <a id="btn-start" class="btn-home btn btn-primary disabled"><i class="fas fa-check"></i></i>&nbsp;&nbsp;Start</a>
+                            <a id="btn-hold" class="btn-home btn btn-primary btn-hold disabled"><i class="fas fa-hand-paper"></i>&nbsp;&nbsp;Hold</a>
+                            <a id="btn-roll" class="btn-home btn btn-primary btn-roll disabled"><i class="fas fa-play"></i>&nbsp;&nbsp;Roll</a>
                         </div>
                         <img class="dice-room" id="dice" src="/images/dice1.png" />
                         <div class="playerHoldDice" id="hold-msg">Player Hold!</div>
                     </div>
                     <div class="col-md-4 p2-room block-game">
-                        <div id="text-p1" class="col-sm-4 main-text">
-                            {{getP2Name}}
-                        </div>
-                        <div id="score1" class="col-sm-4 score1">
-                            0
+                        <div class='box'>
+                            <div id="text-p1" class="col-sm-4 main-text">
+                                {{getP2Name}}
+                            </div>
+                            <div id="score1" class="col-sm-4 score1">
+                                0
+                            </div>
                         </div>
                         <div class="col-sm-4 container curr-container">
                             <h3>
