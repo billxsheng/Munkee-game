@@ -96,6 +96,8 @@ socket.on('updateHoldScore', function (data) {
 
 //updating new game
 socket.on('updateNew', function (data) {
+    scores = [0,0];
+    roundScore = 0;
     score1.textContent = 0;
     currScore1.textContent = 0;
     score0.textContent = 0;
