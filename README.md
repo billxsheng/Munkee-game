@@ -1,4 +1,15 @@
 # Munkee
-Cross-platform multiplayer game created using Node.js, Express.js, Socket.IO, and MongoDB  🐵
-https://munkee.herokuapp.com/
+<b>Technologies used:</b>
+<br>
+HTML/CSS
+<br>
+Node.js
+<br>
+Express.js
+<br>
+Socket.IO
+<br>
+MongoDB
+<br>
+
 
