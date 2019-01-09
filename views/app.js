@@ -40,7 +40,6 @@ document.querySelector("#btn-roll").addEventListener('click', function () {
     }
     else {
         nextPlayer();
-        console.log(playerTurn);
     }
 });
 
@@ -50,8 +49,8 @@ document.querySelector("#btn-hold").addEventListener('click', function () {
 
     if (scores[playerTurn] >= winningScore) {
         document.querySelector("#text-p" + playerTurn).textContent = "winner!";
-        document.querySelector(".btn-hold").classList.add("disabled");
-        document.querySelector(".btn-roll").classList.add("disabled");
+        document.querySelector("#btn-hold").classList.add("disabled");
+        document.querySelector("#btn-roll").classList.add("disabled");
     } else {
         nextPlayer();
         console.log(playerTurn);
@@ -61,10 +60,11 @@ document.querySelector("#btn-hold").addEventListener('click', function () {
 });
 
 document.querySelector("#btn-new").addEventListener("click", function () {
+    console.log(1);
     roundScore = 0;
     scores = [0, 0];
-    document.querySelector(".btn-hold").classList.remove("disabled");
-    document.querySelector(".btn-roll").classList.remove("disabled");
+    document.querySelector("#btn-hold").classList.remove("disabled");
+    document.querySelector("#btn-roll").classList.remove("disabled");
     document.getElementById("text-p0").textContent = player1Name;
     document.getElementById("text-p1").textContent = player2Name;
     document.getElementById("score0").textContent = 0;
