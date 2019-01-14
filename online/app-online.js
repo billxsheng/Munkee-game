@@ -10,11 +10,9 @@ document.querySelector(".btn-roll").addEventListener('click', function () {
     var dice = Math.floor((Math.random() * 6) + 1);
     diceDom = document.querySelector('#dice');
     diceDom.src = "../views/images/dice" + dice + ".png";
-    console.log(dice);
     if (dice != 1) {
         roundScore += dice;
         var query = parseQuery(window.location.search);
-        console.log(query.id);
         socket.emit('requestTurnScore', {
             roundScore,
             playerTurn,
@@ -64,7 +62,6 @@ document.getElementById('btn-start').addEventListener('click', function () {
 });
 
 document.querySelector(".btn-new").addEventListener("click", function () {
-    console.log('New game.');
     roundScore = 0;
     scores = [0, 0];
     var query = parseQuery(window.location.search);

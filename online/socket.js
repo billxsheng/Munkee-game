@@ -23,12 +23,8 @@ function parseQuery(queryString) {
 }
 
 socket.on('connect', () => {
-    console.log('Connected to the server.');
-    console.log(window.location.search);
     var query = parseQuery(window.location.search);
-    console.log(query);
     socket.emit('join', query, () => {
-
     });
 });
 

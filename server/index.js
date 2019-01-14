@@ -13,24 +13,20 @@ var { Game } = require('../models/games');
 //mongoose
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/munkee', function (e) {
-    console.log(e);
 });
 
 //check game middleware
 var gameCheckDB = ((req, res, next) => {
-    console.log('Checking for game in database.');
     Game.findOne({gameId: req.query.id}).then(() => {
-        console.log('game found')
         next();
     }).catch(() => {
-        console.log('game not found')
         res.render('/online');
     });
 });
 
 //checking for empty request
 var gameCheck = ((req, res, next) => {
-    if (req.query.id == undefined) {
+    if (!req.query.id) {
         res.redirect('/');
     } else {
         next();
@@ -73,6 +69,9 @@ app.get('/online/create', (req, res) => {
 
 //posting room data
 app.post('/online/create/redirect', urlencodedParser, (req, res) => {
+    if (!req.body.name) {
+        req.body.name = "Anonymous";
+    };
     var id = uniqId();
     var game = new Game({
         gameId: id,
@@ -81,9 +80,7 @@ app.post('/online/create/redirect', urlencodedParser, (req, res) => {
     });
 
     game.save().then(() => {
-        console.log('Game saved to database.');
     }).catch(() => {
-        console.log('Error saving to database.');
     });
 
     res.redirect(url.format({
@@ -111,11 +108,11 @@ app.post('/online/create/redirect', urlencodedParser, (req, res) => {
 
 //joining room data
 app.post('/online/join/redirect', urlencodedParser, (req, res) => {
-    if (req.body.name === "") {
+    if (!req.body.name) {
         req.body.name = "Anonymous";
     };
     var room = io.sockets.adapter.rooms[req.body.id];
-    if (room === "") {
+    if (!room) {
         res.render('join', {
             error:'Please enter a valid game ID.'
         });
@@ -128,9 +125,7 @@ app.post('/online/join/redirect', urlencodedParser, (req, res) => {
         } else {
             if (room.length < 2) {
                 Game.findOneAndUpdate({ gameId: req.body.id }, { $set: { pair: req.body.name } }, { new: true }, (err, game) => {
-                    console.log(game);
                     if (err) {
-                        console.log('error', err);
                         res.render('join', {
                             error:'Please enter a valid game ID.'
                         })
@@ -289,17 +284,13 @@ io.on('connection', (socket) => {
 
     //disconnect
     socket.on('disconnecting', () => {
-        console.log('Player disconnected');
         var id = Object.keys(socket.rooms);
-        console.log(id[1]);
         io.in(id[1]).emit('disconnect');
         Game.findOneAndRemove({ gameId: id[1] }).then(() => {
-            console.log('Game removed from database.');
         });
     });
 });
 
 //listen
 server.listen(port, () => {
-    console.log(`started ${port}`);
 });

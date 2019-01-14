@@ -10,18 +10,15 @@ var player2Name = "player 2"
 document.querySelector('.btn-p1').addEventListener("click", function () {
     document.querySelector("#text-p0").textContent = document.querySelector('.p1-name').value;
     player1Name = document.querySelector('.p1-name').value;
-    console.log(`Player 1 name changed to ${document.querySelector('.p1-name').value}`);
 });
 
 document.querySelector('.btn-p2').addEventListener("click", function () {
     document.querySelector("#text-p1").textContent = document.querySelector('.p2-name').value;
     player2Name = document.querySelector('.p2-name').value;
-    console.log(`Player 2 name changed to ${document.querySelector('.p2-name').value}`);
 });
 
 document.querySelector(".btn-max").addEventListener("click", function () {
     winningScore = document.querySelector(".max-score").value;
-    console.log(`Max score changed to ${winningScore}`);
 });
 
 document.getElementById("score0").textContent = 0;
@@ -33,7 +30,6 @@ document.querySelector("#btn-roll").addEventListener('click', function () {
     var dice = Math.floor((Math.random() * 6) + 1);
     diceDom = document.querySelector('.dice');
     diceDom.src = "images/dice" + dice + ".png";
-    console.log(dice);
     if (dice !== 1) {
         roundScore += dice;
         document.getElementById("curr-score" + playerTurn).textContent = roundScore;
@@ -53,14 +49,12 @@ document.querySelector("#btn-hold").addEventListener('click', function () {
         document.querySelector("#btn-roll").classList.add("disabled");
     } else {
         nextPlayer();
-        console.log(playerTurn);
     }
 
 
 });
 
 document.querySelector("#btn-new").addEventListener("click", function () {
-    console.log(1);
     roundScore = 0;
     scores = [0, 0];
     document.querySelector("#btn-hold").classList.remove("disabled");
@@ -73,7 +67,6 @@ document.querySelector("#btn-new").addEventListener("click", function () {
     document.getElementById("curr-score1").textContent = 0;
     if (playerTurn == 1) {
         nextPlayer();
-        console.log(playerTurn);
     }
 });
 
@@ -82,7 +75,6 @@ function nextPlayer() {
     roundScore = 0;
     document.querySelector("#curr-score" + playerTurn).textContent = 0;
     playerTurn === 0 ? playerTurn = 1 : playerTurn = 0;
-    console.log(playerTurn);
     document.querySelector("#text-p0").classList.toggle("act");
     document.querySelector("#text-p1").classList.toggle("act");
     document.querySelector("#score0").classList.toggle("act2");
