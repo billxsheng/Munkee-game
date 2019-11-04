@@ -1,18 +1,18 @@
-var scores = [0, 0];
-var playerTurn = 0;
-var roundScore = 0;
-var winningScore = 100;
-var player1Name = "player 1";
-var player2Name = "player 2";
-var query = parseQuery(window.location.search);
+let scores = [0, 0];
+let playerTurn = 0;
+let roundScore = 0;
+let winningScore = 100;
+let player1Name = "player 1";
+let player2Name = "player 2";
+let query = parseQuery(window.location.search);
 
 document.querySelector(".btn-roll").addEventListener('click', function () {
-    var dice = Math.floor((Math.random() * 6) + 1);
+    let dice = Math.floor((Math.random() * 6) + 1);
     diceDom = document.querySelector('#dice');
     diceDom.src = "../views/images/dice" + dice + ".png";
     if (dice != 1) {
         roundScore += dice;
-        var query = parseQuery(window.location.search);
+        let query = parseQuery(window.location.search);
         socket.emit('requestTurnScore', {
             roundScore,
             playerTurn,
@@ -21,7 +21,7 @@ document.querySelector(".btn-roll").addEventListener('click', function () {
         });
     }
     else {
-        var query = parseQuery(window.location.search);
+        let query = parseQuery(window.location.search);
         socket.emit('diceOneRequest', {
             id: query.id
         })
@@ -35,7 +35,7 @@ document.querySelector(".btn-roll").addEventListener('click', function () {
 
 document.querySelector(".btn-hold").addEventListener('click', function () {
     scores[playerTurn] += roundScore;
-    var query = parseQuery(window.location.search);
+    let query = parseQuery(window.location.search);
     socket.emit('requestHold', {
         playerTurn,
         id: query.id,
@@ -64,7 +64,7 @@ document.getElementById('btn-start').addEventListener('click', function () {
 document.querySelector(".btn-new").addEventListener("click", function () {
     roundScore = 0;
     scores = [0, 0];
-    var query = parseQuery(window.location.search);
+    let query = parseQuery(window.location.search);
     if (playerTurn == 1) {
         nextPlayer();
     }
@@ -73,9 +73,9 @@ document.querySelector(".btn-new").addEventListener("click", function () {
     });
 });
 
-function checkTurn() {
-    var hostName = document.getElementById('text-p0').innerHTML;
-    var pairName = document.getElementById('text-p1').innerHTML;
+checkTurn = () => {
+    let hostName = document.getElementById('text-p0').innerHTML;
+    let pairName = document.getElementById('text-p1').innerHTML;
     if (playerTurn === 0) {
         socket.emit('requestHostTurn', {
             id: query.id,
@@ -91,15 +91,15 @@ function checkTurn() {
     }
 };
 
-function switchColor() {
+switchColor = () => {
     socket.emit('switchcolor', {
         id: query.id
     });
 }
 
-function nextPlayer() {
+nextPlayer = () => {
     roundScore = 0;
-    var query = parseQuery(window.location.search);
+    let query = parseQuery(window.location.search);
     if (playerTurn === 0) {
         playerTurn = 1;
     } else {
@@ -111,6 +111,6 @@ function nextPlayer() {
     });
     checkTurn();
     switchColor();
-}
+};
 
 

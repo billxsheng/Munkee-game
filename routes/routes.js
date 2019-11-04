@@ -1,14 +1,14 @@
 //require statements
 const express = require('express');
 const hbs = require('hbs');
-var app = express();
+let app = express();
 const socketIO = require('socket.io');
 const mongoose = require('mongoose');
 const http = require('http');
 const bodyParser = require('body-parser');
 const url = require('url');
 const uniqId = require('uniqid');
-var { Game } = require('../models/games');
+let { Game } = require('../models/games');
 
 //mongoose
 mongoose.Promise = global.Promise;
@@ -16,7 +16,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/munkee', 
 });
 
 //check game middleware
-var gameCheckDB = ((req, res, next) => {
+let gameCheckDB = ((req, res, next) => {
     Game.findOne({gameId: req.query.id}).then(() => {
         next();
     }).catch(() => {
@@ -25,7 +25,7 @@ var gameCheckDB = ((req, res, next) => {
 });
 
 //checking for empty request
-var gameCheck = ((req, res, next) => {
+let gameCheck = ((req, res, next) => {
     if (!req.query.id) {
         res.redirect('/');
     } else {
@@ -44,13 +44,13 @@ app.use(express.static('online'));
 const port = process.env.PORT || 3000;
 
 //socket.io config
-var server = http.createServer(app);
-var io = socketIO(server);
+let server = http.createServer(app);
+let io = socketIO(server);
 app.io = io;
 
 //body parser
 app.use(bodyParser.json());
-var urlencodedParser = bodyParser.urlencoded({ extended: false });
+let urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 //getting home page
 app.get('/', (req, res) => {
@@ -72,8 +72,8 @@ app.post('/online/create/redirect', urlencodedParser, (req, res) => {
     if (!req.body.name) {
         req.body.name = "Anonymous";
     };
-    var id = uniqId();
-    var game = new Game({
+    let id = uniqId();
+    let game = new Game({
         gameId: id,
         host: req.body.name,
         pair: undefined
@@ -111,7 +111,7 @@ app.post('/online/join/redirect', urlencodedParser, (req, res) => {
     if (!req.body.name) {
         req.body.name = "Anonymous";
     };
-    var room = io.sockets.adapter.rooms[req.body.id];
+    let room = io.sockets.adapter.rooms[req.body.id];
     if (!room) {
         res.render('join', {
             error:'Please enter a valid game ID.'
@@ -199,7 +199,7 @@ io.on('connection', (socket) => {
 
     //new game request
     socket.on('requestNew', (data) => {
-        var id = Object.keys(socket.rooms);
+        let id = Object.keys(socket.rooms);
         Game.findOne({gameId: id[1]}).then((game) => {
             io.in(data.id).emit('updateNew', {
                 host: game.host,
@@ -284,7 +284,7 @@ io.on('connection', (socket) => {
 
     //disconnect
     socket.on('disconnecting', () => {
-        var id = Object.keys(socket.rooms);
+        let id = Object.keys(socket.rooms);
         io.in(id[1]).emit('disconnect');
         Game.findOneAndRemove({ gameId: id[1] }).then(() => {
         });

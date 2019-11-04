@@ -1,35 +1,35 @@
-var socket = io();
+let socket = io();
 
-var holdbtn = document.getElementById('btn-hold').classList;
-var rollbtn = document.getElementById('btn-roll').classList;
-var startbtn = document.getElementById('btn-start').classList;
-var newbtn = document.getElementById('btn-new').classList;
-var score0 = document.getElementById('score0');
-var score1 = document.getElementById('score1');
-var currScore0 = document.getElementById('curr-score0');
-var currScore1 = document.getElementById('curr-score1');
-var msg = document.getElementById('message');
-var textP0 = document.querySelector("#text-p0");
-var textP1 = document.querySelector("#text-p1");
+let holdbtn = document.getElementById('btn-hold').classList;
+let rollbtn = document.getElementById('btn-roll').classList;
+let startbtn = document.getElementById('btn-start').classList;
+let newbtn = document.getElementById('btn-new').classList;
+let score0 = document.getElementById('score0');
+let score1 = document.getElementById('score1');
+let currScore0 = document.getElementById('curr-score0');
+let currScore1 = document.getElementById('curr-score1');
+let msg = document.getElementById('message');
+let textP0 = document.querySelector("#text-p0");
+let textP1 = document.querySelector("#text-p1");
 
-function parseQuery(queryString) {
-    var query = {};
-    var pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
-    for (var i = 0; i < pairs.length; i++) {
-        var pair = pairs[i].split('=');
+parseQuery = (queryString) => {
+    let query = {};
+    let pairs = (queryString[0] === '?' ? queryString.substr(1) : queryString).split('&');
+    for (let i = 0; i < pairs.length; i++) {
+        let pair = pairs[i].split('=');
         query[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1] || '');
     }
     return query;
 }
 
 socket.on('connect', () => {
-    var query = parseQuery(window.location.search);
+    let query = parseQuery(window.location.search);
     socket.emit('join', query, () => {
     });
 });
 
 //toggle colors
-function toggleColor() {
+toggleColor = () => {
     textP0.classList.toggle("act");
     score0.classList.toggle("act");
     currScore0.classList.toggle("act");

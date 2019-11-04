@@ -1,15 +1,11 @@
-var mongoose = require('mongoose');
+let mongoose = require('mongoose');
 
-
-var gameSchema = mongoose.Schema({
+let gameSchema = mongoose.Schema({
     gameId: String,
     host: String,
     pair: String
 });
 
-
-
-
-var Game = mongoose.model('Game', gameSchema);
+let Game = mongoose.model('Game', gameSchema);
 
 module.exports = {Game};

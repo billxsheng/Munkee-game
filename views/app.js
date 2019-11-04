@@ -1,11 +1,11 @@
-var scores = [0, 0];
-var playerTurn = 0;
-var currentScore1 = 0;
-var currentScore2 = 0;
-var roundScore = 0;
-var winningScore = 100;
-var player1Name = "player 1"
-var player2Name = "player 2"
+let scores = [0, 0];
+let playerTurn = 0;
+let currentScore1 = 0;
+let currentScore2 = 0;
+let roundScore = 0;
+let winningScore = 100;
+let player1Name = "player 1"
+let player2Name = "player 2"
 
 document.querySelector('.btn-p1').addEventListener("click", function () {
     document.querySelector("#text-p0").textContent = document.querySelector('.p1-name').value;
@@ -27,7 +27,7 @@ document.getElementById("curr-score0").textContent = 0;
 document.getElementById("curr-score1").textContent = 0;
 
 document.querySelector("#btn-roll").addEventListener('click', function () {
-    var dice = Math.floor((Math.random() * 6) + 1);
+    let dice = Math.floor((Math.random() * 6) + 1);
     diceDom = document.querySelector('.dice');
     diceDom.src = "images/dice" + dice + ".png";
     if (dice !== 1) {
@@ -50,8 +50,6 @@ document.querySelector("#btn-hold").addEventListener('click', function () {
     } else {
         nextPlayer();
     }
-
-
 });
 
 document.querySelector("#btn-new").addEventListener("click", function () {
